@@ -56,13 +56,19 @@ H3217M
 http://tw.hiking.biji.co/?q=trail&act=detail&id=512
 http://onetrip.pixnet.net/blog/post/347204467
 
+## 合歡溪林道
+
 ## 合歡溪小嘆息灣
 石門北峰登山口 石門北峰 [下降 450公尺 約 45 分]
 
 [2:20'] 哈哈山
 
-http://tw.hiking.biji.co/index.php?q=news&act=info&id=7317
-http://burt.pixnet.net/blog/post/42904493
+[【南投】合歡溪小嘆息灣渡假行](http://tw.hiking.biji.co/index.php?q=news&act=info&id=7317)
+[合歡主峰下合歡溪營地(小嘆息灣)](http://burt.pixnet.net/blog/post/42904493)
+[高山秘境：石門北峰下合歡溪源](http://tw.hiking.biji.co/index.php?q=review&act=info&review_id=530)
+
+##
+宜蘭大同 南山民宿：一個晚上含早餐500元
 
 ## 飲食
 * 松雪樓：自助吧 300/人，火鍋+自助吧 1200/2人
