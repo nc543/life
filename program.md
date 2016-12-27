@@ -9,9 +9,7 @@
 * 生態全紀錄 (週六 20:00)
 
 * [LiTV](https://www.litv.tv)
-* [三立財經台](https://www.youtube.com/watch?v=t7D4bUk7lq4)
-
-http://www.setn.com/NewsLive.aspx?SLVID=59
+* [三立財經台](https://www.youtube.com/watch?v=-CW5HRRmMUk)
 
 http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 
