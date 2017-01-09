@@ -15,3 +15,5 @@
 http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 
 [英文歌](english_song.md)
+
+http://www.dramaq.biz/close-your-eyes-before-its-dark/
