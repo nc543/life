@@ -1,35 +1,45 @@
-
-
-軌跡 (Track)：所經過路徑的座標記錄起來。(Oruxmaps 軌跡預設為紅色) 記錄點的採樣根
-據衛星接收器(或是 App)上的設定有關
-
-航線 (Route)： 別人走過的軌跡,或是預先設定的路徑。
+# GPS
+* 路點 (waypoint)：獨立的重要標記點，如照相的地點或使用者手動標記的休息站或路口等等；
+* 軌跡點 (trackpoint)：GPS 裝置自動定時記錄的路點。
+* 軌跡 (track)：經過的路徑座標記錄起來成一串有順序的軌跡點，可能包含走錯的路，通常含有時間訊息。(Oruxmaps 軌跡預設為紅色) 記錄點的採樣根據衛星接收器(或是 App)上的設定有關
+* 航線、路程 (route)：一串有順序的軌跡點作為預設的路徑，可由軌跡整理而來。
+	* routepoint：
 
 軌跡檔、航線檔
-* GPX：通用的標準格式,其實是 XML 檔案格式,裡面就是「座標」(緯經度)、高度、時間的紀錄點在地圖上所串接而成的線段。以及包含方位點(WPT)的紀錄。
-* KML：Google 地球用的軌跡檔(或航線檔)可包含影像記錄的方位點。
-* GDB：Garmin
-	* 轉成 GPX 或 KML：http://www.gpsvisualizer.com/convert_input
+* GPX (<u>GP</u>S e<u>X</u>change Format)： XML 的通用標準格式，內含緯經度、高度、及時間的軌跡點串接而成的軌跡，以及路點的紀錄。
+	* gpx
+		* metadata
+		* trk
+			* name
+			* trkseg
+				* trkpt lat lon
+					* ele
+					* time
+* KML (Keyhole Markup Language)：XML 格式用在前主是 Keyhole 公司的 Google 地球，可包含影像記錄的方位點。KMZ 是 ZIP 2.0 壓縮的 KML。
+* GDB (Garmin GPS database)：Garmin 導航裝置使用的檔案，格式未公開。
+	* 線上轉成 GPX 或 KML：http://www.gpsvisualizer.com/convert_input
+	* Garmin MapSource
+	* Garmin BaseCamp
+	* gpsbabel
+
+編輯可用 viking
 
 圖資
 * OpenStreetMap 地圖合併等高線圖資，例如 www.viewfinderpanoramas.org、[ASTER](https://asterweb.jpl.nasa.gov/gdem.asp) 及[內政部20公尺網格數值地形模型資料](http://data.gov.tw/node/35430)。
-
-下載位址:http://goo.gl/I6Xxka 包含:
-1. 台灣等高線地圖(JING 製作,地圖切分 16 檔案,等高線 10M)
-https://sites.google.com/site/asterosmtaiwantopo/mapsforge
-2. 台灣等高線地圖(單一檔案,等高線 20M,資料來源:OpenStreet Map)
-3. 台灣百岳路徑(行走軌跡),由登山前輩收集
-4. 台灣小百岳 GPX
-5. 台灣各大郊山路徑(山岳前輩阿銘與阿容在 Google 硬碟分享)
-6. 等高線風格樣式設定
-7. 國內外各大線上地圖圖資設定
-
 * [MOI.OSM](https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html)
 	* 每週四發行，使用當日 [OSM](http://openstreetmap.tw) 的圖資。
 	* MOI 來自 [Rex](http://blog.nutsfactory.net) 轉換 “[內政部 20 公尺網格數值地形模型資料](http://tgos.nat.gov.tw)” 而成的等高線，可用來做一般登山參考。探勘式登山建議仍搭配經建三版地形圖 (地圖產生器)。
 	* Style 由綬草北三兄與 Rudy 共同設定，作為合適登山與尋寶（hiking/geocaching）風格樣式。
 	* [臉書社團](facebook.groups/taiwan.topo)。
 * [ASTER.OSM - Taiwan TOPO](https://sites.google.com/site/asterosmtaiwantopo/)：OpenStreetMap 跟 ASTER GDEM v2 合而為一製成
+* 下載位址:http://goo.gl/I6Xxka 包含:
+	1. 台灣等高線地圖(JING 製作,地圖切分 16 檔案,等高線 10M)
+	2. 台灣等高線地圖(單一檔案,等高線 20M,資料來源:OpenStreet Map)
+	3. 台灣百岳路徑(行走軌跡),由登山前輩收集
+	4. 台灣小百岳 GPX
+	5. 台灣各大郊山路徑(山岳前輩阿銘與阿容在 Google 硬碟分享)
+	6. 等高線風格樣式設定
+	7. 國內外各大線上地圖圖資設定
 
 ## 參考及延伸閱讀
 * https://drive.google.com/file/d/0B4Lt5N7jhnjzMkZ5QUFlMFdEU2M/view
