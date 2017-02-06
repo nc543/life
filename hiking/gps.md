@@ -1,9 +1,10 @@
 # GPS
-* 路點 (waypoint)：獨立的重要標記點，如照相的地點或使用者手動標記的休息站或路口等等；
+* waypoint (路點、方位點)：獨立的標記點，如照相的地點或使用者手動標記的休息站或路口等等；
 * 軌跡點 (trackpoint)：GPS 裝置自動定時記錄的路點。
-* 軌跡 (track)：經過的路徑座標記錄起來成一串有順序的軌跡點，可能包含走錯的路，通常含有時間訊息。(Oruxmaps 軌跡預設為紅色) 記錄點的採樣根據衛星接收器(或是 App)上的設定有關
-* 航線、路程 (route)：一串有順序的軌跡點作為預設的路徑，可由軌跡整理而來。
+* track (軌跡、航跡紀錄)：走過的路徑座標記錄起來成一串有順序的軌跡點，可能包含走錯的路，通常含有時間訊息。(Oruxmaps 軌跡預設為紅色) 記錄點的採樣根據衛星接收器(或是 App)上的設定有關
+* route (航線、路程)：一串有順序的軌跡點作為預設的路徑，可由軌跡整理而來。
 	* routepoint：
+* 座標系統：GPS 使用 WGS84。台灣常用的大地基準座標有三種：WGS84、TWD97 與 TWD67，其中 TWD97 跟 WGS84 幾乎相同並適用於全球。而 TWD67 僅限用於臺灣地區，跟 TWD97 的差異在東西向約 828 公尺，南北向約 200公尺。目前國防部空軍救護隊及內政部空勤總隊直升機都依據 WGS84 執行救援任務。
 
 軌跡檔、航線檔
 * GPX (<u>GP</u>S e<u>X</u>change Format)： XML 的通用標準格式，內含緯經度、高度、及時間的軌跡點串接而成的軌跡，以及路點的紀錄。
@@ -41,12 +42,31 @@
 	6. 等高線風格樣式設定
 	7. 國內外各大線上地圖圖資設定
 
-## 參考及延伸閱讀
+軌跡下載
+* 登山補給站
+* [地圖產生器](http://map.happyman.idv.tw/twmap/login.php)
+* 健行筆記
+* 馬克褚工作室 -- 自行車與登山
+* Google
+* [航跡分享](https://www.facebook.com/groups/1631034120482669)[檔案](https://www.facebook.com/groups/1631034120482669/files/)
+
+## APP
 * https://drive.google.com/file/d/0B4Lt5N7jhnjzMkZ5QUFlMFdEU2M/view
 	* OruxMaps：「tracklogs」「mapfiles」「mapstyles」
-* 綠野遊蹤 APP 及[離線圖資](http://sea.tokyo.idv.tw/?p=3004)
-* OsmAnd APP
+
+[Locus MAP](http://www.locusmap.eu/)
+* [使用手冊](http://docs.locusmap.eu)
+* [Locus 經驗](https://sites.google.com/site/asterosmtaiwantopo/locus)
+* [使用台灣百年歷史地圖](http://gis.rchss.sinica.edu.tw/gps/?p=1814)
+
+綠野遊蹤及[離線圖資](http://sea.tokyo.idv.tw/?p=3004)
+
+登山客 (iPhone)
+
+OsmAnd Maps (iPhone)
+
+## 參考及延伸閱讀
 * 加速定位：GPS 依距上次使用定位的時間與距離，可分為冷開機、暖開機、熱開機。冷開機時，GPS 需透過衛星重新下載定位所需資料，可能需要15分鐘。可透過網路下載 aGPS 資料，可加速初次定位的速度 (例如用「GPS狀態」APP)。暖開機的前提是年曆資料未超過一星期、已有目前時間、距離上次定位未超過 100 公里，可以在 60 秒內定位。
-* [航跡分享](https://www.facebook.com/groups/1631034120482669)[檔案](https://www.facebook.com/groups/1631034120482669/files/)
-* 登山補給站
-* 地圖產生器
+* [手機GPS登山](https://sites.google.com/view/mobilegpshiking)
+* [OSM 相關登山用手機軟體使用常見問題](https://osmtw.hackpad.com/OSM--kauuIuQ27tR)
+* http://lirobo.blogspot.tw/2016/09/gps.html
