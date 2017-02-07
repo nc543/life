@@ -45,6 +45,7 @@
 軌跡下載
 * 登山補給站
 * [地圖產生器](http://map.happyman.idv.tw/twmap/login.php)
+* [地圖瀏覽器](http://map.happyman.idv.tw/~happyman/twmap3/)
 * 健行筆記
 * 馬克褚工作室 -- 自行車與登山
 * Google
