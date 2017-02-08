@@ -1,0 +1,2 @@
+
+* Kapanga softphone

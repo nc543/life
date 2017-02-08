@@ -3,6 +3,7 @@ MPV (Multi-Purpose Vehicle)、MUV (Multi-Utility Vehicle)、Minivan：多功能�
 
 車中床
 時鐘跟車速要準
+車頂行李架
 
 VW Sharan
 Volvo V60
@@ -15,3 +16,4 @@ forester
 
 Terios 小型 SUV (日規名為Be-go，另有雙生車Toyota Rush) 車長 4,065mm、車寬 1,695mm 車高 1,705mm 迴轉半徑 4.9米，3SZ-VE 1.5升直列4缸引擎，最大馬力103匹6,000轉，最大扭力13.8公斤米4,400轉，四速自排變速，2WD車重1,180公斤、4WD1,195公斤。
  
+Caddy-Maxi 長寬高 4,878/1,793/1,868 
