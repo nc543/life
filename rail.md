@@ -2,7 +2,7 @@
 ## 糖鐵
 
 ### 南北平行預備線
-[[西螺大橋|http://blog.xuite.net/ticket0610/ticket/8500018]] -- 有鐵公路併用的就照片
+[[西螺大橋|http://blog.xuite.net/ticket0610/ticket/8500018]] -- 有鐵公路併用的舊照片
 [img[http://4.blog.xuite.net/4/2/6/e/10102691/blog_175119/txt/8500018/16.jpg]]
 
 ### 斗六糖廠

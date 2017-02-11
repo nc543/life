@@ -9,5 +9,10 @@ ASUS VivoMini UN62  i5-4210U 4G 128GSSD (2016/03/15 $12900)
 * 輸入法 http://liaozi.blogspot.tw/2015/04/ubuntu-1504-ubuntu-1504-chinese-input.html
 * Synergy
 * 2016/12/31 用 [UNetbootin](http://unetbootin.github.io/) 透過 Ubuntu 16.10 mini.iso 改安裝 Lubuntu Desktop
+* http://lirobo.blogspot.tw/2014/06/asus-nb-pu301la-lubuntu-1404.html
+* http://lirobo.blogspot.tw/2013/12/lubuntu-1310.html
 
 SUNIX HDMI to VGA轉換器 (H2V37C0) (2016/03/15 $580)
+
+* ASUS VivoMini UN62
+* ASUS VivoMini UN66：有 CEC 接頭

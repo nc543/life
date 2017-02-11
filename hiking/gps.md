@@ -59,6 +59,7 @@
 * [使用手冊](http://docs.locusmap.eu)
 * [Locus 經驗](https://sites.google.com/site/asterosmtaiwantopo/locus)
 * [使用台灣百年歷史地圖](http://gis.rchss.sinica.edu.tw/gps/?p=1814)
+* https://www.mobile01.com/topicdetail.php?f=628&t=4385125
 
 綠野遊蹤及[離線圖資](http://sea.tokyo.idv.tw/?p=3004)
 
@@ -66,8 +67,13 @@
 
 OsmAnd Maps (iPhone)
 
+## 上傳 OSM
+http://docs.locusmap.eu/doku.php?id=manual:advanced:map_tools:osm
+
 ## 參考及延伸閱讀
 * 加速定位：GPS 依距上次使用定位的時間與距離，可分為冷開機、暖開機、熱開機。冷開機時，GPS 需透過衛星重新下載定位所需資料，可能需要15分鐘。可透過網路下載 aGPS 資料，可加速初次定位的速度 (例如用「GPS狀態」APP)。暖開機的前提是年曆資料未超過一星期、已有目前時間、距離上次定位未超過 100 公里，可以在 60 秒內定位。
 * [手機GPS登山](https://sites.google.com/view/mobilegpshiking)
 * [OSM 相關登山用手機軟體使用常見問題](https://osmtw.hackpad.com/OSM--kauuIuQ27tR)
 * http://lirobo.blogspot.tw/2016/09/gps.html
+* https://bluebottle.idv.tw/?p=3910
+* http://bluebottle.idv.tw/?p=3909

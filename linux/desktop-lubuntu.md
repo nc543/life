@@ -13,5 +13,8 @@ http://www.archlinuxuser.com/2014/04/create-lxde-fn-key-shortcut-for.html
 1. 撰寫 shell script 放在 ~/bin，設成可執行
 2. 到 Preferences -> Default applications for LX Session -> 選擇 Autostart：script 檔名填到「Manual autostarted applications」後按「+ Add」
 
+## 輸入法
+開始 -> Preferences -> Language Support
+
 ## 其它
 跟 LXDE 的差別？
