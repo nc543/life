@@ -815,7 +815,7 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
 	1. 有 shell function command_not_found_handle，以原本指令 (含引數) 作為引數執行 command_not_found_handle
 	1. 印錯誤訊息並回傳 exit status of 127.
 
-       Bash 使用 [hash 表](builtin-hash.md)記憶執行檔的完整路徑
+       Bash 使用 [hash 表](builtin-hash.md) 記憶執行檔的完整路徑
        performed  only  if the command is not found in the hash table.
 
 shell 在 a separate 執行環境執行 the named program.  Argument 0 is set to the name given, and the remain‐

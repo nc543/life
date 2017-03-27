@@ -3,9 +3,9 @@
 
 http://lirobo.blogspot.tw/2015/04/assert.html
 
-       The  purpose  of  this  macro is to help programmers find bugs in their
-       programs.  The  message  "assertion  failed  in  file  foo.c,  function
-       do_bar(), line 1287" is of no help at all to a user.
+是 macro ？
+
+assert() 的目的是在程式中幫忙找出 bugs。
 
 assert - abort the program if assertion is false
 ```c
@@ -14,16 +14,14 @@ assert - abort the program if assertion is false
 void assert(scalar expression);
 ```
 
-當 expression 是假 (也就是等於 0)，assert() 印錯誤訊息到 stderr 並呼叫 abort() 結束程式
+當 expression 是假 (也就是等於 0)，assert() 印類似錯誤訊息「assertion  failed  in  file  foo.c,  function do_bar(), line 1287」到 stderr 並呼叫 abort() 結束程式
 ```c
 #include <assert.h>
 
 void assert(scalar expression);
 ```
 
-If  the  macro  NDEBUG  was  defined  at the moment <assert.h> was last
-       included, the macro assert() generates no code, and hence does  nothing
-       at all. 
+如果在 <assert.h> 之前定義了NDEBUG，assert() 不會產生任何程式碼。
 ```c
 #define NDEBUG
 #include <assert.h>

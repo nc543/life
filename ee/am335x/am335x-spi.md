@@ -16,3 +16,6 @@ http://processors.wiki.ti.com/index.php/AM335x_McSPI_Driver's_Guide
 
 http://www.myir-tech.com/bbs/thread-6840-1-1.html
 drivers/spi/spi-omap2-mcspi.c
+
+[FPGA cape for BeagleBone Black](https://beagleboardfoundation.wordpress.com/2017/02/24/fpga-cape-for-beaglebone-black/)
+* 透過 PRU0 存取 SPI 獲得更好的效能。

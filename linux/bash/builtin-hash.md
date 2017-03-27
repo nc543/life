@@ -1,6 +1,6 @@
 # 執行檔完整路徑的快取
 
-bash 會將透過 $PATH 找到的執行檔完整路徑存在 hash 表，下次使用就不用再找 $PATH 而直接採用 hash 表紀錄的完整路徑。
+bash 會將透過 $PATH 找到的執行檔完整路徑存在 hash 表裡，下次使用就不用再找 $PATH 而直接採用 hash 表紀錄的完整路徑。
 
 `hash [-lr] [-p filename] [-dt] [name]`
 

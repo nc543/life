@@ -72,3 +72,6 @@ W225×D280×H120cm（外部尺寸）、W205×D205×H110cm（內帳內部尺寸�
 
 ##
 防水貼帶熱封處理
+
+## 參考
+* http://gundam-wei.blogspot.tw/

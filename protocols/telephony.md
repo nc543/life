@@ -2,7 +2,7 @@ Hookflash 或 Flash：按一下話機的 hook
 
 PBX 功能
 * DID：在於會送 Callee ID 給用戶，用戶 PBX 可依此讓特定分機響鈴
-* DOD
+* DOD (Direct Outward Dialing)：直接用自己的號碼外撥，不用透過
 * Hunting Group
 * Wait Queue
 * Call pickup (代接)
