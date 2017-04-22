@@ -53,3 +53,6 @@ may define any valid identifier as a macro
 ```
 #define SHOW(msg) printf(#msg)
 ```
+
+## 其它
+__FUNCTION__
