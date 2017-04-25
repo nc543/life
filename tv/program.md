@@ -18,3 +18,7 @@ http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 
 http://www.dramaq.biz/close-your-eyes-before-its-dark/
 狂沙十萬里
+
+[NGC Taiwan](https://www.youtube.com/channel/UCzuH3UncFcXOKrz4XOYARTw)
+
+[《世紀天才》第一集](https://www.youtube.com/watch?v=2JEa4mLY4Pk)
