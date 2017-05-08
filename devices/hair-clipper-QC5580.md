@@ -12,6 +12,11 @@ http://www.p4c.philips.com/cgi-bin/cpindex.pl?ctn=QC5580/15&scy=SI&slg=TZH
 
 插電使用
 
+DIY hairclipper QC55XX length settings.pdf
+Regular Comb (3-15mm with 2 mm steps)
+Precision Comb (1mm - 3mm with 0.5mm steps)
+Long Comb (18-30mm with 2mm steps)
+
 # QC5580
 * made by philips
 * 最大的特點剃頭可轉 180 度方便 DIY、不須上油
