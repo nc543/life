@@ -30,10 +30,10 @@ HTPC header
 ## 透過 HDMI 控制電視
 CEC 是傳輸，使用 DDC
 
-USB to CEC Adapters exist that allow a computer to control CEC-enabled devices. 
+USB to CEC Adapters：透過 USB 控制 CEC-enabled devices.
 
 一些 HDMI-CEC 指令
-* One Touch Play: the device will become active source when playback starts
+* One Touch Play (單鍵播放): the device will become active source when playback starts
 * System Standby: switches all connected devices to standby
 * Preset Transfer: transfers the tuner channel setup to another TV set
 * One Touch Record: start recording immediately
@@ -47,7 +47,7 @@ USB to CEC Adapters exist that allow a computer to control CEC-enabled devices.
 * Remote Control Pass Through: pass through remote control commands
 * Device OSD Name Transfer: transfer the preferred device names to the TV set
 
-顯示器使用 physical address 0.0.0.0 及 logical address 0
+顯示器使用 physical 位址 0.0.0.0 及 logical 位址 0
 所有啟用 CEC 的設備會有 physical 及 logical 位址，而非 CEC 裝置只有 physical 位址。Physical addresses are taken up based on the position of the device with respect to the root. For example, if an A/V receiver's output is connected to HDMI1 of the TV, it gets the physical address 1.0.0.0. A device connected to the first HDMI input port of the A/V receiver would get the address 1.1.0.0, while one connected to the second HDMI port would get 1.2.0.0.
 
 邏輯位址依據功能。

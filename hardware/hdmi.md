@@ -67,7 +67,7 @@ TMDS
 接頭
 HDMI
 mini HDMI
-micro &micro;HDMI
+µHDMI
 
 MHL (Mobile High-definition Link)
 

@@ -9,7 +9,3 @@ http://tuxradar.com/content/xdotool-script-your-mouse
 .profile
 ~/.config/autostart
 http://www.arthurtoday.com/2015/02/ubuntu-setting-login-script-for-all-users.html
-
-
-YouTube keyboard shortcut
-http://www.hongkiat.com/blog/youtube-keyboard-shortcuts/

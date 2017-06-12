@@ -1,20 +1,6 @@
 # assert()
-善用 assert()：只是開發過程中暫時的判定，還是作為最終的 error handling？
+assert(expression) 是程式開發過程中作為除錯用的判斷，當 expression 判斷為「假」則印出程式檔名、行數、函數名稱、判斷式等資訊到 strerr 後呼叫 abort() 結束程式。
 
-http://lirobo.blogspot.tw/2015/04/assert.html
-
-是 macro ？
-
-assert() 的目的是在程式中幫忙找出 bugs。
-
-assert - abort the program if assertion is false
-```c
-#include <assert.h>
-
-void assert(scalar expression);
-```
-
-當 expression 是假 (也就是等於 0)，assert() 印類似錯誤訊息「assertion  failed  in  file  foo.c,  function do_bar(), line 1287」到 stderr 並呼叫 abort() 結束程式
 ```c
 #include <assert.h>
 
@@ -31,5 +17,11 @@ main()
 	assert(xxx);
 }
 ```
+
+是 macro ？
+
+assert() 的目的是除錯，就程式本身功能的運作是不需要的，所以並不適合作為程式功能的 error handling。
+
+http://lirobo.blogspot.tw/2015/04/assert.html
 
 http://www.edn.com/electronics-blogs/embedded-basics/4440193/8-tips-for-squashing-bugs-using-ASSERT-in-C

@@ -1,6 +1,9 @@
 * [LED 顯示響鈴 ](http://lirobo.blogspot.tw/2014/02/led.html)
+* 電壓偵測
 
 ## FXO power
+
+on-hook 時可用多少電？off-hook 時呢？
 
 話機狀態：on-hook, ringing, off-hook
 
@@ -8,8 +11,9 @@
 
 https://www.maximintegrated.com/en/app-notes/index.mvp/id/1923 Draw 150mW of Isolated Power from Off-Hook Phone Line
 
-
 http://www.edn.com/design/power-management/4315670/Get-power-from-a-telephone-line-without-disturbing-it Get power from a telephone line without disturbing it
+
+http://rtony56789.pixnet.net/blog/post/27467768
 
 ## Line status 偵測
 光耦合器 in a voltage divider resistor network in tandem
@@ -87,3 +91,37 @@ digium s100u (wcusb): Tiger560B <br>
 <ul><li><a href="http://www.earth.li/~noodles/hardware-usbfxs.html">http://www.earth.li/~noodles/hardware-usbfxs.html</a></li></ul>
 xorcom (xpp_usb)<br>
 
+## Si3210
+constant voltage zone
+* 由 TIP-to-RING Open-circuit voltage (V<sub>OC</sub>) 定義
+* 0 V to 94.5 V in 1.5 V  steps
+constant current zone
+* 由 loop current limit (I<sub>LIM</sub>) 定義
+* 20 mA to 41 mA in 3 mA steps
+
+inherent dc output resistance (R<sub>O</sub>) of 160Ω
+
+## 電話線網路
+
+## 電話線供電系統
+電話線是厝內現成的 48V 電源供電系統，由電信公司提供給所有並接的話機
+
+可供電瓦數，損耗
+mΩ/m
+AWG 越小越粗
+
+電話線線徑 2C 一般為 0.65mm，多P線為 0.5mm。
+電信機房到家用的是 0.4mm 多P 銅纜線...(600P)
+
+網路線強調高頻信號傳輸，對絞的目的就是要減少雜音(Noise)，串音(Crosstalk)等干擾，橙/白橙，綠/白綠絞線次數每英吋約4次，藍/白藍,棕/白棕絞線次數每英吋約3次。
+
+有廠牌的 CAT6 網路線 23 AWG
+
+### 並聯供電
+跟隨電壓供應電流
+電話可能摘機，所以供應電流只能緩慢增加
+
+### 沒用的線路獨立供電
+
+##
+[利用電話線供電的雙音門鈴電路圖](http://cocdig.com/docs/show-post-33268.html)

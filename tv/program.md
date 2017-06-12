@@ -10,19 +10,23 @@
 * 生態全紀錄 (週六 20:00)
 
 * [LiTV](https://www.litv.tv)
+* https://www.catchplay.com
+* https://tv.line.me
+* http://www.eyesplay.org/
 * [三立財經台](https://www.youtube.com/watch?v=-CW5HRRmMUk)
 
 http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 
-[英文歌](english_song.md)
+[英文歌](../english_song.md)
 
-https://tv.line.me/wakeup
-
-http://www.dramaq.biz/close-your-eyes-before-its-dark/
 狂沙十萬里
 
 [NGC Taiwan](https://www.youtube.com/channel/UCzuH3UncFcXOKrz4XOYARTw)
 
-[《世紀天才》第一集](https://www.youtube.com/watch?v=2JEa4mLY4Pk)
-
-http://vmus.co/genius/
+* 《世紀天才》 http://vmus.co/genius/
+* 月薪嬌妻
+	* 9 https://jo90j00.web.tv/video/2016-09-720p__pccvvawoysm
+	* 10 https://rumble.com/v32vjt-2016-10-720p.html
+	* 10 http://jo90j00.web.tv/video/2016-10-720p__ueilvevsmk2
+	* http://jp01.jplovetv.com/search/label/2016日本電視劇-逃避雖可恥但有用(月薪嬌妻)
+* 驚爆焦點 Spotlight
