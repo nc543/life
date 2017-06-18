@@ -8,9 +8,15 @@
 * 十點全紀錄 (週四)
 * 公視主題之夜 (週五)
 * 生態全紀錄 (週六 20:00)
-
-* [LiTV](https://www.litv.tv)
+線上影片
+* www.youtube.com
+	* [花甲男孩轉大人 ep1](https://www.youtube.com/watch?v=Vc4vViKL7o4)
 * https://www.catchplay.com
+* [愛奇藝](http://tw.iqiyi.com)
+	* [花甲男孩轉大人](http://tw.iqiyi.com/a_19rrh8q9jh.html)
+	* [看見台灣](http://tw.iqiyi.com/a_19rrh8q9jh.html)
+* [LiTV](https://www.litv.tv)
+* http://chtvideo.hinet.net
 * https://tv.line.me
 * http://www.eyesplay.org/
 * [三立財經台](https://www.youtube.com/watch?v=-CW5HRRmMUk)
@@ -31,6 +37,3 @@ http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 	* http://jp01.jplovetv.com/search/label/2016日本電視劇-逃避雖可恥但有用(月薪嬌妻)
 * 驚爆焦點 Spotlight
 * [紐時評世紀25大佳片](https://newtalk.tw/news/view/2017-06-12/89091)
-
-http://chtvideo.hinet.net
-http://tw.iqiyi.com/v_19rrlwoxrg.html
