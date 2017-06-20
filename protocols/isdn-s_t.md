@@ -1,6 +1,6 @@
 # BRI S/T Reference Point
 
-NT 跟 TE 間的界面，可接一個 NT 及 8 個 TE，定義在 ITU-T I.430，至少兩對雙絞線分別作為傳跟收使用，使用 RJ-45 或 RJ-48 接頭。
+NT 和 TE 之間的界面，可接一個 NT 及 8 個 TE，定義在 ITU-T I.430，至少兩對雙絞線分別作為傳跟收使用，使用 RJ-45 或 RJ-48 接頭。
 * 速率 192 kbps，每 250µS 48 bits 的 frame，包含 36-bit 2B+D 等。
 * pseudo-ternary 編碼：1 = 0V；0 = +750mV 跟 -750mV 交錯出現
 	* DC balanced (no DC current) 使得電感電容耦合較容易，減少靜電及串音，接線可以長些。
@@ -13,7 +13,7 @@ F|L|B1|E/L|D|A/L|F<sub>A</sub>|N/L|B2|E/L|D|M/L|B1|E/L|D|S/L|B2|E/L|D|L
 1|1|8 |1  |1|1  |1            |1  |8 |1  |1|1  |8 |1  |1|1  |8 |1  |1|1
 
 * F, L, N
-	* F: + 的 bipolar violation 表示 frame 開始，之後還需要的 - 的 bipolar violation 來維持 DC balance
+	* F: 是 + 的 bipolar violation 用來表示 frame 開始，之後還需要的 - 的 bipolar violation 來維持 DC balance
 	* L: 維持 DC balance
 	* N: F<sub>A</sub> 相反，確保 - 的 bipolar violation 至少在此之前發生
 * B1, B2, D, E：包含兩組 2B+D，E 是 NT echo 收到的 D。
