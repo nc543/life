@@ -95,7 +95,7 @@ call to pthread_mutex_unlock(), it is indeterminate which thread will succeed in
 acquiring it.
 
 
-另外還有兩種 lock 的 variants：pthread_mutex_trylock() and pthread_mutex_timedlock().
+另外還有兩種 lock 的變形：pthread_mutex_trylock() and pthread_mutex_timedlock().
 
 pthread_mutex_trylock()：如果已經 lock，回 EBUSY.
 

@@ -4,6 +4,7 @@ MPV (Multi-Purpose Vehicle)、MUV (Multi-Utility Vehicle)、Minivan：多功能�
 車中床
 時鐘跟車速要準
 車頂行李架
+後中標準安全帶
 
 VW Sharan
 Volvo V60
@@ -25,8 +26,8 @@ Caddy-Maxi 長寬高 4,878/1,793/1,868
 Skoda yeti
 Mazda5 759000
 三菱 outlander
-Mazda cx-9 1680000
-land rover discovery 360 萬
+Mazda cx-9 168萬
+land rover discovery 360萬
 
 ## 車頂架
 Thule

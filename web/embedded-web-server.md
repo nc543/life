@@ -4,6 +4,12 @@
 
 簡易的 server side scripting，在 server 端將其它資料加到 html 網頁中，例如另一個檔案內容、執行指令的結果，甚至有條件判斷。
 
+## 目標
+* Reduces file sizes：佔據較少的 disk space 並下載較快
+	* 壓縮、共通部份共用
+	* compile-time
+	* run-time：server side script
+
 ## eServ
 嵌入式系統，如 AP，通常需要提供網頁的 GUI，需要在資源有限的環境下跑網頁伺服器，反而位於使用者端的瀏覽器有很好的效能。eServ 用最少的資源實做基本的 Web framework 功能，產生相對少量的資料，讓瀏覽器端盡情去描繪多采多姿的內容，也對使用者互動方面有了更多的需求。
 

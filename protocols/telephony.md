@@ -33,5 +33,11 @@ PBX 功能
 * Attendant Console
 * 自動總機
 
+## ringdown 或 hotline
+
+不用撥號，直接讓另一端響鈴。在 VoIP 通常是有一個事先設好的熱線號碼或位址，一摘機就撥。
+
+PLAR (Private line automatic ringdown) 是用在 PBX 內部的熱線。
+
 ## 延伸閱讀
 http://en.wikipedia.org/wiki/Telephony
