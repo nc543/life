@@ -25,6 +25,7 @@ https://www.catchplay.com
 * https://tv.line.me
 * http://www.eyesplay.org/
 * [三立財經台](https://www.youtube.com/watch?v=-CW5HRRmMUk)
+https://www.netflix.com/
 
 http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 
@@ -40,5 +41,6 @@ http://e-school.ysnp.gov.tw/ch/02learn/list.asp
 	* 10 https://rumble.com/v32vjt-2016-10-720p.html
 	* 10 http://jo90j00.web.tv/video/2016-10-720p__ueilvevsmk2
 	* http://jp01.jplovetv.com/search/label/2016日本電視劇-逃避雖可恥但有用(月薪嬌妻)
-* 驚爆焦點 Spotlight
+* 驚爆焦點 Spotlight https://www.youtube.com/watch?v=jt5L4Xc-HtY
 * [紐時評世紀25大佳片](https://newtalk.tw/news/view/2017-06-12/89091)
+* 敦克爾克大行動
