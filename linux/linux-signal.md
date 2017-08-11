@@ -37,16 +37,17 @@ struct sigaction {
     void     (*sa_restorer)(void);
 };
 ```
-有些處理器架構使用 union，要避免同時設定 sa_handler 及 sa_sigaction.
+有些處理器架構在 sigaction 裡使用 union，要避免同時設定 sa_handler 及 sa_sigaction.
 
 sa_handler：指定動作，可以是 SIG_DFL 設為預設動作、SIG_IGN 忽略、或者一個 signal 處理函數指標。此函數接收 signal 號碼作為唯一的引數。
 
-sa_sigaction：使用時 sa_flags 設為 SA_SIGINFO，取代 sa_handler 作為 signal 處理函數，接收 signal 號碼作為第一個引數、siginfo_t 指標作為第二個引數、cast 為 void * 的 ucontext_t 指標作為第三個引數。
-Commonly, 第三個引數不使用。ucontext_t 見 getcontext(3)。
+sa_sigaction：使用時 sa_flags 設為 SA_SIGINFO，取代 sa_handler 作為 signal 處理函數，接收 signal 號碼作為第一個引數、siginfo_t 指標作為第二個引數、cast 為 void * 的 ucontext_t 指標作為第三個引數。通常第三個引數不使用。ucontext_t 見 getcontext(3)。
 
 sa_mask：signal 處理函數執行時新增的 signal block mask，除非使用 SA_NODEFER flag。
 
 sa_restorer：並非打算給 application 使用，POSIX 沒有 sa_restorer 欄位，細節見 sigreturn(2)。
+
+siginfo_t 有 si_signo、si_errno、si_code (原因碼) 外，還有其它依不同 signal 而有所不同的欄位
 
 ## 送 signal
 
@@ -55,16 +56,14 @@ sa_restorer：並非打算給 application 使用，POSIX 沒有 sa_restorer 欄�
 ## 同步接受 signal
 
 ## Signal mask and pending signals
-可以 block 某些 signal，也就是 signal 產生後不會傳送，直到 unblock，這中間的階段稱為 pending。
+可以暫時阻擋某些 signal，也就是 signal 產生後不會傳送，直到放行，這中間的階段稱為 pending。
 
-每個 thread 有 signal mask 表明 block 哪些 signals (使用 pthread_sigmask()，單 thread process 可用 sigprocmask())。
+每個 thread 有 signal mask 表明暫時阻擋哪些 signals (使用 pthread_sigmask()，單 thread process 可用 sigprocmask())。
 
 fork() 繼承 signal mask，execve() 後仍舊維持。
 
-signal 可以是給 process 的 (例如使用 kill()) 或給特定 thread 的 (例如產生 SIGSEGV 及 SIGFPE 是 a consequence of exe‐
-       cuting a specific machine-language instruction are thread directed,  as
-       are  signals  targeted  at a specific thread using pthread_kill(3)).
-任何未 block 的 thread 都可能收到給 process 的 signal。
+signal 可以是給 process 的 (例如使用 kill()) 或給特定 thread 的 (例如產生 SIGSEGV 及 SIGFPE 是 a consequence of executing a specific machine-language instruction are thread directed,  as are  signals  targeted  at a specific thread using pthread_kill(3)).
+任何未阻擋的 thread 都可能收到給 process 的 signal。
 
 thread 透過 sigpending() 可以取得 pending 的 signals，包括給 process 的及給此 thread 的。
 
