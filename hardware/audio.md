@@ -12,4 +12,4 @@ DSD (Direct Stream Digital)
 
 LDAC
 
-MDR-1000X $12,900
+http://www.masters.tw/89771/diy萬能遙控器

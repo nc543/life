@@ -1,42 +1,4 @@
-thread 有個好處是可以透過全域變數來共用資訊，但需要避免存取變數時，有其它 thread 正在更新它。
-
 pthread-incr.c
-
-如果變數只是一個 int 且只有一個 thread 會改變它，其它都只是讀 => 沒有同步問題
-
-mutex (mutual exclusion) 讓 thread 同步
- a shared resource 使用，so that, for example, one thread doesn’t try to access
-a shared variable at the same time as another thread is modifying it.
-
-
-
-critical section: a section of code that accesses a shared resource and whose execution should be atomic; that is, its execution should not be interrupted by another thread that simultaneously accesses the same shared resource.
-
-
-
-To avoid the problems that can occur when threads try to update a shared variable,
-we must use a mutex  to ensure that only one thread
-at a time can access the variable. More generally, mutexes can be used to ensure
-atomic access to any shared resource, but protecting shared variables is the most
-common use.
-
-
-
-mutex 只有兩種狀態：locked 及 unlocked。同一時間，只有一個 thread 可以取得 lock，然後只有它可以 unlock。嘗試 lock 一個已經 locked 的 mutex，
-depending on the method used to place the lock 可能 block 或 fails with an error.
-
-the terms acquire and release are sometimes used synonymously for lock and unlock.
-
-## Statically Allocated Mutexes
-mutex 可以 allocated as a static variable 或 created dynamically at run
-time.
-A mutex is a variable of the type pthread_mutex_t. 使用前必須先初始化
-
-For a statically allocated mutex
-使用預設的屬性
-```
-pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
-```
 
 Dynamic mutex creation
 is somewhat more complex, and we delay discussion of it until Section 30.1.5.
@@ -49,57 +11,9 @@ been statically initialized using PTHREAD_MUTEX_INITIALIZER or dynamically initi
 using pthread_mutex_init() (described in Section 30.1.5).
 
 
-如果 mutex 是在 heap 的動態配置、在 stack 的自動變數、或要用不是預設的屬性
-
-```
-#include <pthread.h>
-int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
-```
-Returns 0 on success, or a positive error number on error
-
-如果 attr 是 NULL，使用預設的屬性。
-
-當動態 allocated 的 mutex 不再使用，應該要回到 unlocked 狀態並 pthread_mutex_destroy().
-```
-#include <pthread.h>
-int pthread_mutex_destroy(pthread_mutex_t *mutex);
-```
-Returns 0 on success, or a positive error number on error
-
 ## Locking and Unlocking a Mutex
-After initialization, a mutex is unlocked. To lock and unlock a mutex, we use the
-pthread_mutex_lock() and pthread_mutex_unlock() functions.
-
-```
-#include <pthread.h>
-
-int pthread_mutex_lock(pthread_mutex_t *mutex);
-int pthread_mutex_unlock(pthread_mutex_t *mutex);
-/* Both return 0 on success, or a positive error number on error */
-```
-
-`pthread_mutex_lock()` 等候到 unlock 後，lock mutex 並馬上 return。
-
-If the calling thread itself has already locked the mutex given to
-pthread_mutex_lock(), then, for the default type of mutex, one of two implementationdefined
-possibilities may result: the thread deadlocks, blocked trying to lock a
-mutex that it already owns, or the call fails, returning the error EDEADLK.
-On Linux,
-the thread deadlocks by default. (We describe some other possible behaviors when
-we look at mutex types in Section 30.1.7.)
-The pthread_mutex_unlock() function unlocks a mutex previously locked by the
-calling thread. It is an error to unlock a mutex that is not currently locked, or to
-unlock a mutex that is locked by another thread.
-If more than one other thread is waiting to acquire the mutex unlocked by a
-call to pthread_mutex_unlock(), it is indeterminate which thread will succeed in
-acquiring it.
 
 
-另外還有兩種 lock 的變形：pthread_mutex_trylock() and pthread_mutex_timedlock().
-
-pthread_mutex_trylock()：如果已經 lock，回 EBUSY.
-
-pthread_mutex_timedlock()：等候 abstime 還未取得 lock，回 ETIMEDOUT.
 
 In most well-designed applications, a
 thread should hold a mutex for only a short time, so that other threads are not prevented
@@ -153,5 +67,4 @@ the use of pthread_mutex_init() is not required to initialize these mutex types 
 statically allocated mutexes.
 
 ##
-1. 《[The Linux Programming Interface](http://man7.org/tlpi/)》chap. 30
 1. http://lirobo.blogspot.tw/2014/11/pthread-mutex.html

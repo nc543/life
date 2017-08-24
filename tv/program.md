@@ -22,12 +22,23 @@
 * http://www.eyesplay.org/
 * https://www.netflix.com/
 * [愛奇藝](http://tw.iqiyi.com)
-* http://vmus.co/
+* http://vmus.co/ (歐美影集簡中字幕)
 
 他們在畢業的前一天爆炸 II
 * [Line TV](https://tv.line.me)
 * [公視+7](http://vod7.pts.org.tw)
 * KKTV？
+
+藍色大門
+* https://www.litv.tv/vod/movie/content.do?id=VD00000252 ($99/月)
+* http://chtvideo.hinet.net ($129/月+)
+
+德布西森林
+* http://chtvideo.hinet.net ($70 or $129/月+)
+* https://www.catchplay.com/tw/search?keyword=德布西森林 ($80)
+* http://tw.iqiyi.com/v_19rr7huqfo.html (VIP)
+
+冰與火之歌
 
 [英文歌](../english_song.md)
 
@@ -62,5 +73,7 @@
 《海灘的一天》、《青梅竹馬》、《一一》
 
 [紐時評世紀25大佳片](https://newtalk.tw/news/view/2017-06-12/89091)
+
+https://zh.wikipedia.org/wiki/影史百大華語電影
 
 敦克爾克大行動
