@@ -1,4 +1,11 @@
-ASUS VivoMini UN62  i5-4210U 4G 128GSSD (2016/03/15 $12900)
+ASUS VivoMini UN62 i5-4210U 4G 128GSSD (2016/03/15 $12900)
+* 0.6L 6.95W
+* half-size mini-PCIe 無線網路卡模組 AW-CB161H 採用 802.11a/b/g/n/ac + Bluetooth v4.0 (Realtek 8821AE 雙頻)
+* 802.11ac
+* 藍芽 4.0
+* 滿載時運作噪音僅 26.3dB
+* USB Charge+ 快速充電功能 (Battery Charging 1.2)
+* 著眼商用市場，所採用晶片組會和家用版不同 (如商用版配置 QM87，家用版配置 HM87) 。
 * 安裝 Linux
 	* 製作 USB 開機碟：µSD 卡插到另一台 Linux 電腦，用 [UNetbootin](http://unetbootin.github.io/) 安裝發行版 Ubuntu 15.10_NetInstall [[參考](http://lirobo.blogspot.tw/2014/06/asus-nb-pu301la-lubuntu-1404.html)]
 	* USB 開機：DEL 或 F2 進入 BIOS 設定啟用 Full USB 功能重開機，硬碟是空的時候直接會選 USB 開機，不然需要進 BIOS 選擇。

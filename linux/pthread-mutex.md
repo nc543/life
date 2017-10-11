@@ -1,9 +1,5 @@
 pthread-incr.c
 
-Dynamic mutex creation
-is somewhat more complex, and we delay discussion of it until Section 30.1.5.
-
-
 According to SUSv3, applying the operations that we describe in the remainder
 of this section to a copy of a mutex yields results that are undefined. Mutex
 operations should always be performed only on the original mutex that has
@@ -38,10 +34,6 @@ calls only in case of lock contention.
 locking and unlocking a file region using fcntl()
 incrementing and decrementing a System V semaphore
 
-## Mutex Deadlocks
-有時候，一個 thread 需要同時處理兩個以上的共用資源，每個資源用不同的 mutex。
-當多個 thread 同時 locking 相同 set 的 mutexe 時，由於順序的關係而可能出現 deadlock.
-
 ## Mutex Attributes
 pthread_mutexattr_t defines the attributes of a mutex
 
@@ -50,11 +42,6 @@ functions used to initialize and retrieve the attributes
 one of the attributes that can be set for a mutex: its type.
 
 ## Mutex Types
-一般 mutex 不能有下列行為：
-1. 一個 thread lock 同一個 mutex 兩次。
-2. 一個 thread unlock 不是它 lock 的 mutex
-3. 一個 thread unlock 還沒 lock 的 mutex
-
 mutex type
 * PTHREAD_MUTEX_DEFAULT：出現上述行為的結果為 undefined
 * PTHREAD_MUTEX_NORMAL：一個 thread lock 同一個 mutex 兩次會造成 deadlock，其它為 undefined (在 Linux，這兩種都會成功)

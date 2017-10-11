@@ -19,6 +19,7 @@
 * [LiTV](https://www.litv.tv)
 * http://chtvideo.hinet.net
 * https://tv.line.me
+* https://tw.video.yahoo.com
 * http://www.eyesplay.org/
 * https://www.netflix.com/
 * [愛奇藝](http://tw.iqiyi.com)
@@ -28,6 +29,8 @@
 * [Line TV](https://tv.line.me)
 * [公視+7](http://vod7.pts.org.tw)
 * KKTV？
+
+《麻醉風暴2》週六晚上 9:00 公視首播，LINE TV 30 分後上架，愛奇藝台灣站與 KKTV 10:00 上架，隔週中午 12:00 YAHOO TV 推出。
 
 藍色大門
 * https://www.litv.tv/vod/movie/content.do?id=VD00000252 ($99/月)

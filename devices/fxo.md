@@ -125,3 +125,6 @@ AWG 越小越粗
 
 ##
 [利用電話線供電的雙音門鈴電路圖](http://cocdig.com/docs/show-post-33268.html)
+
+## FXS to FXO converter
+ARTECH AX301 http://www.artech.com.tw/showdetail.php?id=97&lang=EN

@@ -17,3 +17,5 @@ GPX 格式
 
 ##
 http://wiki.openstreetmap.org/wiki/Zh-hant:Map_Features
+
+[OpenStreetMap 自己的登山地圖自己畫 - 奇萊東稜](https://docs.google.com/presentation/d/1vBV0gSt8RRDXQxrRRkhBvkQTu1AHnEBEGNdDZG7GMoI/edit#slide=id.g35f391192_00)
