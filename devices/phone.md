@@ -35,6 +35,10 @@ single-ended ear speaker
 KX-TSC60|KX-TSC62|秘密撥號 複頻Tone/脈衝Pulse撥號系統
 KX-T7703|KX-T7705|音樂保留?
 
+KX-TS58
+
+KX-TSC11
+
 20151011 購買 KX-TSC62 NT$1090, KX-TS500 NT$488
 
 中諾話機 F013 響鈴太大聲，喇叭串 200Ω (後來發現可設定鈴聲)
