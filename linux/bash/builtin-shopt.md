@@ -47,10 +47,9 @@ If set, minor errors in the spelling of a directory com‐
                       mand  proceeds.  This option is only used by interactive
                       shells.
 ## checkhash
-                      If set, bash checks that a command found in the hash ta‐
-                      ble  exists  before  trying  to execute it.  If a hashed
+If set, bash checks that a command found in the hash table  exists  before  trying  to execute it.  If a hashed
                       command no longer exists, a normal path search  is  per‐
-                      formed. 見 [hash](builtin-hash.md)
+                      formed. 見 [hash](http://lirobo.blogspot.com/2017/11/bash-hash.html)
 ## checkjobs
                       If set, bash lists the status of any stopped and running
                       jobs before exiting an interactive shell.  If  any  jobs

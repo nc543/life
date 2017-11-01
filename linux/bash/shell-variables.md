@@ -46,12 +46,12 @@ Expands to the full filename used to  invoke  this  instance  of
 
 ## BASH_CMDS
 跟 hash 連動？
-              An associative array variable whose members  correspond  to  the
+              An associative 陣列 whose members  correspond  to  the
               internal  hash  table  of  commands  as  maintained  by the hash
               builtin.  Elements added to this array appear in the hash table;
               unsetting  array  elements cause commands to be removed from the
               hash table.
-              見 [hash](builtin-hash.md)
+              見 [hash](http://lirobo.blogspot.com/2017/11/bash-hash.html)
 
 ## BASH_COMMAND
               The command currently being executed or about  to  be  executed,

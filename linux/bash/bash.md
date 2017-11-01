@@ -14,7 +14,7 @@ shell 可以同步地或非同步地執行指令。同步的話，shell 等候�
 
 shell 提供內建指令實作一些外部程式不方便處理的功能，例如 cd、break、continue、及 exec 直接處置 shell 自己，無法在外部程式實作。history、getopts、kill、或 pwd 等內建指令可以在外部實作，但使用內建指令較方便。
 
-雖然 shell 執行指令是重要的基本功能，大部分複雜的地方在於內建程式語言功能，像許多高階語言，shell 也提供變數、流程控制架構、quoting、及函數。
+雖然 shell 執行指令是重要的基本功能，大部分複雜的地方在於內建程式語言功能，像許多高階語言，shell 也提供變數、流程控制架構、[quoting](http://lirobo.blogspot.tw/2017/10/bash-quoting.html)、及函數。
 
 shell 特別為互動使用提供許多功能，包括 job control、[command line editing](bash-readline.md)、command history 及 aliases。
 
@@ -31,7 +31,7 @@ bash 會讀取並執行檔案內的指令，然後離開。離開狀態碼是最
 
 shell 運作的簡略描述：
 1. 讀取輸入，可能從一個檔案 (shell 腳本)、從搭配選項 -c 的一個引數、或從使用者的終端機 (互動模式)。如果遇到註解開始，shell 忽略註解符號「#」及當行剩下的部份。
-2. 用 metacharacter 區分出是字還是運算子，採用 quoting 規則。並進行 Alias 擴展 (見 ALIASES)。
+2. 用 metacharacter 區分出是字還是運算子，採用 [quoting](http://lirobo.blogspot.tw/2017/10/bash-quoting.html) 規則。並進行 Alias 擴展 (見 ALIASES)。
 3. 解析這些 token 成 simple 及 compound 指令 (see Shell Commands).
 4. 進行擴展 (見 [EXPANSION](bash-expansion.md))、分辨出檔名 lists of filenames (see Filename Expansion) and 指令 and 引數。
 5. [輸出入導向](bash-redirection.md)。
@@ -60,14 +60,16 @@ shell 運作的簡略描述：
 有些字有特殊作用，稱為保留字，只用在指令的第一個字、或 case/for 的第三字，大部分作為流程控制結構用，包括：
 * ! case coproc do done elif else esac fi for function if in select then until while { } time [[ ]]
 
-metacharacter 及保留字可經由 [QUOTING](bash-quoting.md) 跳脫其特殊意義。
+metacharacter 及保留字可經由 [QUOTING](http://lirobo.blogspot.tw/2017/10/bash-quoting.html) 跳脫其特殊意義。
 
-name 或 identifier：由英文字母、數字及「_」組成的字，不能以數字開頭，可作為 shell variable 或 function 名稱。
+name 或 identifier：由英文字母、數字及「_」組成的字，不能以數字開頭，可作為 shell 變數或 function 名稱。
 
 token：一串字元 shell 視為一個單元，可以是字或運算子。
 
 ### Simple Commands 簡單指令
-從每個指令 (正式說法是簡單指令 Simple Command) 來看，最後就是指令控制字元或者是換行 (相當於「;」)。內容除了指令名稱外，前面可以加許多變數指定 (variable assignment)，後面可以加許多選項跟引數，以及輸出入轉向。用到的 metadata 除了輸出入轉向，就只有 blank。引數從指令名稱開始從 0 開始編號。
+一個簡單指令依序由變數指定、指令名稱、blank 分隔的引數、輸出入轉向 redirections，最後以 control operator 結束。引數從指令名稱開始從 0 開始編號。
+
+簡單指令是由 control operator 切割，裡面最陽春要有指令名稱，用到的 metacharacter 除了輸出入轉向，就只有 blank。
 
 回傳值是 exit status。如果被 signal n 結束，回傳值是 128+n 。
 
@@ -92,11 +94,11 @@ pipeline 是一系列指令用控制運算子「|」或「|&」將指令的輸�
 pipeline 前面可再加保留字 time，在結束時會回報執行所歷經的時間、耗用的使用者及系統時間。
 加選項 -p 採用 POSIX 輸出格式。
 當 shell 在 posix 模式, 如果下一個 token 以 '-' 開始，time 不作為保留字。
-變數 TIMEFORMAT 可設定顯示的格式 (見 description of TIMEFORMAT under Shell Variables)。
+變數 TIMEFORMAT 可設定顯示的格式 (見 description of TIMEFORMAT under [Shell 變數](shell-variables.md))。
 
        在 posix 模式, time may be followed by a newline.  In
        this case, the shell displays the total user and system  time  consumed
-       by  the shell and its children.  The TIMEFORMAT variable may be used to
+       by  the shell and its children.  The TIMEFORMAT 變數 may be used to
        specify the format of the time information.
 
 每個指令都在獨立的 process (i.e., subshell) 執行
@@ -126,11 +128,11 @@ List 最後回傳最後指令執行的結果。
 
 [[ expression ]]
               Return a status of 0 or 1 depending on  the  evaluation  of  the
-              conditional  expression expression.  Expressions are composed of
+              conditional  expression.  Expressions are composed of
               the primaries described  below  under  CONDITIONAL  EXPRESSIONS.
               進行 tilde  expansion,  parameter  and
-              variable  expansion, arithmetic expansion, command substitution,
-              process substitution, and quote removal，但不進行
+              變數 expansion, arithmetic expansion, command substitution,
+              process substitution, and [quote](http://lirobo.blogspot.tw/2017/10/bash-quoting.html) removal，但不進行
 	      Word  splitting  and pathname expansion。
               Conditional operators such as -f must be unquoted to be recognized as
               primaries.
@@ -161,10 +163,10 @@ List 最後回傳最後指令執行的結果。
        pattern  may  be  quoted to force the quoted portion to be matched as a
        string.  Bracket expressions in regular  expressions  must  be  treated
        carefully,  since normal quoting characters lose their meanings between
-       brackets.  If the pattern is stored in a shell  variable,  quoting  the
-       variable expansion forces the entire pattern to be matched as a string.
+       brackets.  If the pattern is stored in a shell 變數,  quoting  the
+       變數 expansion forces the entire pattern to be matched as a string.
        Substrings matched by parenthesized subexpressions within  the  regular
-       expression  are  saved in the array variable BASH_REMATCH.  The element
+       expression  are  saved in the array BASH_REMATCH.  The element
        of BASH_REMATCH with index 0 is the portion of the string matching  the
        entire regular expression.  The element of BASH_REMATCH with index n is
        the portion of the string matching the nth parenthesized subexpression.
@@ -188,7 +190,7 @@ List 最後回傳最後指令執行的結果。
 
        for name [ [ in [ word ... ] ] ; ] do list ; done
               The list of words following in is expanded, generating a list of
-              items.  The variable name is set to each element of this list in
+              items. 變數 name 設成 each element of this list in
               turn, and list is executed each time.  If the in word  is  omit‐
               ted,  the  for  command  executes  list once for each positional
               parameter that is set (see PARAMETERS below).  The return status
@@ -197,13 +199,11 @@ List 最後回傳最後指令執行的結果。
               commands are executed, and the return status is 0.
 
        for (( expr1 ; expr2 ; expr3 )) ; do list ; done
-              First, the arithmetic expression expr1 is evaluated according to
-              the rules described  below  under  ARITHMETIC  EVALUATION.   The
-              arithmetic  expression  expr2 is then evaluated repeatedly until
-              it evaluates to zero.  Each time expr2 evaluates to  a  non-zero
-              value,  list  is executed and the arithmetic expression expr3 is
-              evaluated.  If any expression is omitted, it behaves  as  if  it
-              evaluates to 1.  The return value is the exit status of the last
+              expr1、expr2、和 expr3 都是 arithmetic expression，如果省略任何一個，evaluate 為 1。首先，expr1 evaluated 依據
+              the rules described  below  under  ARITHMETIC  EVALUATION.
+              然後 expr2 一直 evaluated 直到為 0。非 0 時執行 list 且 expr3
+              evaluated.
+              回傳值 is the exit status of the last
               command in list that is executed, or false if any of the expres‐
               sions is invalid.
 
@@ -218,7 +218,7 @@ List 最後回傳最後指令執行的結果。
               that word.  If the line is empty, the words and prompt are  dis‐
               played again.  If EOF is read, the command completes.  Any other
               value read causes name to be set to  null.   The  line  read  is
-              saved  in  the  variable REPLY.  The list is executed after each
+              saved  in 變數 REPLY.  The list is executed after each
               selection until a break command is executed.  The exit status of
               select  is the exit status of the last command executed in list,
               or zero if no commands were executed.
@@ -227,11 +227,11 @@ List 最後回傳最後指令執行的結果。
               A case command first expands word, and tries to match it against
               each pattern in turn, using the same matching rules as for path‐
               name expansion (see Pathname  Expansion  below).   The  word  is
-              expanded  using  tilde  expansion, parameter and variable expan‐
-              sion, arithmetic  substitution,  command  substitution,  process
+              expanded  using  tilde  expansion, parameter and 變數擴展、
+              arithmetic  substitution,  command  substitution,  process
               substitution  and  quote  removal.   Each  pattern  examined  is
-              expanded using tilde expansion, parameter  and  variable  expan‐
-              sion, arithmetic substitution, command substitution, and process
+              expanded using tilde expansion, parameter  and 變數擴展、
+              arithmetic substitution, command substitution, and process
               substitution.  If the shell option nocasematch is  enabled,  the
               match  is  performed  without  regard  to the case of alphabetic
               characters.  When a match is found, the  corresponding  list  is
@@ -274,7 +274,7 @@ coproc [NAME] command [redirections]
 coproc 是保留字。
 建立一個稱為 NAME 的 coprocess，如果 NAME is not supplied, 預設名稱是 COPROC。
 如果 command 是簡單指令，NAME must not be supplied ；否則會被解釋成簡單指令的第一個字。
-當 coprocess 執行時, the shell 建立名為 NAME 的 array 變數 (見 Arrays) in the context  of
+當 coprocess 執行時, the shell 建立名為 NAME 的[陣列](array.md) in the context  of
        the executing shell.  The standard output of command is connected via a
        pipe to a file  descriptor  in  the  executing  shell,  and  that  file
        descriptor  is  assigned  to NAME[0].  The standard input of command is
@@ -285,7 +285,7 @@ coproc 是保留字。
        commands and redirections using standard  word  expansions.   The  file
        descriptors  are  not  available  in  subshells.  The process ID of the
        shell spawned to execute the coprocess is available as the value of the
-       variable  NAME_PID.   The  wait builtin command may be used to wait for
+       變數 NAME_PID.   The  wait builtin command may be used to wait for
        the coprocess to terminate.
 
 ### Shell Function Definitions
@@ -314,60 +314,30 @@ coproc 是保留字。
 \# 開始的字到行末都會忽略。互動式 shell 可用內建指令 shopt 的 interactive_comments 關閉註解功能。
 
 ## PARAMETERS 參數
-參數代表一個儲存值的地方，有下列表示方式：
+參數泛指變數，代表一個儲存值的地方。有下列表示方式：
 * name (非數字開頭由英文字母、數字及「_」組成的字)：變數，有一個值，並可能有一些屬性。屬性是透過內建指令 declare 指定。
 * 數字
 * 特殊字元 (下面特殊參數所列)
 
-變數經過指定產生。如果沒給值，表示 null 字串，也是有效的值。產生的變數只能透過內建指令 unset 才能移除。
+變數經過指定產生。
 ```
 名稱=[值]
 ```
 
-「值」可給可不給，如果不給，變數指定為 null 字串.  All
-所有值會經歷 tilde 擴展、parameter and variable 擴展、指令取代、arithmetic 擴展、及 quote 移除。(見 [EXPANSION](bash-expansion.md))
-如果變數有設屬性為整數，即使 $((...)) 擴展沒使用，值仍會 evaluated 為 arithmetic expression。(見 Arithmetic Expansion)
+如果沒給值，值是 null，也是存在的變數。變數要移除只能透過內建指令 unset。
+所有值會經歷 tilde 擴展、parameter and 變數擴展、指令取代、算術擴展、及 [quote](http://lirobo.blogspot.tw/2017/10/bash-quoting.html) 移除。(見 [EXPANSION](bash-expansion.md))
+如果變數的屬性為整數，即使 $((...)) 擴展沒使用，值仍會 evaluated 為 arithmetic expression。(見 Arithmetic Expansion)
 除了「$@」外，不進行 Word splitting。
 不進行 Pathname expansion。
 Assignment statements 亦可作為內建指令 alias、declare、typeset、export、readonly、及 local 的參數。
 當用在 posix 模式，these builtins may appear in a command after one or more instances of the command builtin and retain these assignment statement properties.
 
-       In the context where an assignment statement is assigning a value to  a
-       shell variable or array index, the += operator 可用來 append to
-       or add to the variable's previous value.  When += is applied to a vari‐
-       able  for  which the integer attribute has been set, value is evaluated
-       as an arithmetic expression and added to the variable's current  value,
-       which is also evaluated.  When += is applied to an array variable using
-       compound assignment (see Arrays below), the  variable's  value  is  not
-       unset (as it is when using =), and new values are appended to the array
-       beginning at one greater than the array's maximum  index  (for  indexed
-       arrays) or added as additional key-value pairs in an associative array.
-       When applied  to  a  string-valued  variable,  value  is  expanded  and
-       appended to the variable's value.
+變數有哪幾種？整數、字串、陣列、[nameref 變數](nameref.md)？
 
-       A variable can be assigned the nameref attribute using the -n option to
-       the declare or local builtin commands (see the descriptions of  declare
-       and  local  below) to create a nameref, or a reference to another vari‐
-       able.  This allows variables to be  manipulated  indirectly.   Whenever
-       the  nameref  variable  is  referenced or assigned to, the operation is
-       actually performed on the variable specified by the nameref  variable's
-       value.  A nameref is commonly used within shell functions to refer to a
-       variable whose name is passed as an  argument  to  the  function.   For
-       instance, if a variable name is passed to a shell function as its first
-       argument, running
-              declare -n ref=$1
-       inside the function creates a nameref variable ref whose value  is  the
-       variable name passed as the first argument.  References and assignments
-       to ref are treated as references and assignments to the variable  whose
-       name  was  passed as $1.  If the control variable in a for loop has the
-       nameref attribute, the list of words can be a list of shell  variables,
-       and  a name reference will be established for each word in the list, in
-       turn, when the loop is executed.  Array variables cannot be  given  the
-       -n attribute.  However, nameref variables can reference array variables
-       and subscripted array variables.  Namerefs can be unset  using  the  -n
-       option  to the unset builtin.  Otherwise, if unset is executed with the
-       name of a nameref variable as an argument, the variable  referenced  by
-       the nameref variable will be unset.
+使用 `+=` 指定一個值給 shell 變數或 array index：
+* 整數變數：加法加上目前的值。
+* array using compound assignment (見 [陣列](array.md)), 變數的值 is not unset (as it is when using =), and new values are appended to the array beginning at one greater than the array's maximum  index  (for  indexed arrays) or added as additional key-value pairs in an associative array.
+* 字串變數：值擴展後 appended to 變數的值。
 
 ### Positional Parameters 位置參數
        A  positional  parameter  is a parameter denoted by one or more digits,
@@ -425,92 +395,9 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
               ing  mail,  this  parameter holds the name of the mail file cur‐
               rently being checked.
 
-### [Shell Variables](shell-variables.md)
+### [Shell 變數](shell-variables.md)
 
-### Arrays
-       Bash  provides one-dimensional indexed and associative array variables.
-       Any variable may be used as an indexed array; the declare builtin  will
-       explicitly  declare an array.  There is no maximum limit on the size of
-       an array, nor any requirement that members be indexed or assigned  con‐
-       tiguously.   Indexed  arrays  are  referenced using integers (including
-       arithmetic expressions)  and are  zero-based;  associative  arrays  are
-       referenced  using  arbitrary  strings.  Unless otherwise noted, indexed
-       array indices must be non-negative integers.
-
-       An indexed array is created automatically if any variable  is  assigned
-       to using the syntax name[subscript]=value.  The subscript is treated as
-       an arithmetic expression that must evaluate to a number.  To explicitly
-       declare  an  indexed array, use declare -a name (見 [SHELL BUILTIN COMMANDS](builtin.md)
-       ).  declare -a name[subscript] is also  accepted;  the  sub‐
-       script is ignored.
-
-       Associative arrays are created using declare -A name.
-
-       Attributes may be specified for an array variable using the declare and
-       readonly builtins.  Each attribute applies to all members of an array.
-
-       Arrays  are  assigned  to  using  compound  assignments  of  the   form
-       name=(value1  ...  valuen),  where  each  value  is  of  the form [sub‐
-       script]=string.  Indexed array assignments do not require anything  but
-       string.  When assigning to indexed arrays, if the optional brackets and
-       subscript are supplied, that index is assigned to; otherwise the  index
-       of  the element assigned is the last index assigned to by the statement
-       plus one.  Indexing starts at zero.
-
-       When assigning to an associative array, the subscript is required.
-
-       This syntax is also accepted by the declare builtin.  Individual  array
-       elements  may  be  assigned  to  using the name[subscript]=value syntax
-       introduced above.  When assigning to an indexed array, if name is  sub‐
-       scripted  by  a negative number, that number is interpreted as relative
-       to one greater than the maximum index  of  name,  so  negative  indices
-       count back from the end of the array, and an index of -1 references the
-       last element.
-
-       Any element of an array may  be  referenced  using  ${name[subscript]}.
-       The braces are required to avoid conflicts with pathname expansion.  If
-       subscript is @ or *, the word expands to all members  of  name.   These
-       subscripts  differ only when the word appears within double quotes.  If
-       the word is double-quoted, ${name[*]} expands to a single word with the
-       value  of each array member separated by the first character of the IFS
-       special variable, and ${name[@]} expands each element of name to a sep‐
-       arate  word.   When  there  are no array members, ${name[@]} expands to
-       nothing.  If the double-quoted expansion  occurs  within  a  word,  the
-       expansion  of  the first parameter is joined with the beginning part of
-       the original word, and the expansion of the last  parameter  is  joined
-       with  the  last  part  of  the original word.  This is analogous to the
-       expansion of the special parameters * and  @  (see  Special  Parameters
-       above).   ${#name[subscript]}  expands  to  the  length  of ${name[sub‐
-       script]}.  If subscript is * or @, the expansion is the number of  ele‐
-       ments  in the array.  Referencing an array variable without a subscript
-       is equivalent to referencing the array with a subscript of 0.   If  the
-       subscript used to reference an element of an indexed array evaluates to
-       a number less than zero, it is interpreted as relative to  one  greater
-       than  the  maximum  index  of the array, so negative indices count back
-       from the end of the array, and an index of -1 references the last  ele‐
-       ment.
-
-       An  array variable is considered set if a subscript has been assigned a
-       value.  The null string is a valid value.
-
-       It is possible to obtain the keys (indices) of an array as well as  the
-       values.   ${!name[@]} and ${!name[*]} expand to the indices assigned in
-       array variable name.  The treatment when in double quotes is similar to
-       the expansion of the special parameters @ and * within double quotes.
-
-       The  unset  builtin  is  used to destroy arrays.  unset name[subscript]
-       destroys the array element at index subscript.  Negative subscripts  to
-       indexed  arrays are interpreted as described above.  Care must be taken
-       to avoid unwanted side effects caused  by  pathname  expansion.   unset
-       name, where name is an array, or unset name[subscript], where subscript
-       is * or @, removes the entire array.
-
-       The declare, local, and readonly builtins each accept a  -a  option  to
-       specify  an  indexed  array  and  a -A option to specify an associative
-       array.  If both options are supplied, -A takes  precedence.   The  read
-       builtin  accepts  a  -a  option to assign a list of words read from the
-       standard input to an array.  The set and declare builtins display array
-       values in a way that allows them to be reused as assignments.
+### [陣列](array.md)
 
 ## ALIASES
        Aliases  allow a string to be substituted for a word when it is used as
@@ -567,7 +454,7 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
        When  a  function is executed, the arguments to the function become the
        positional parameters during its execution.  The special parameter # is
        updated  to reflect the change.  Special parameter 0 is unchanged.  The
-       first element of the FUNCNAME variable is set to the name of the  func‐
+       first element of the FUNCNAME 變數 is set to the name of the  func‐
        tion while the function is executing.
 
        All  other  aspects  of  the  shell execution environment are identical
@@ -580,11 +467,11 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
        traps), and the ERR trap is not inherited unless the -o errtrace  shell
        option has been enabled.
 
-       Variables  local to the function may be declared with the local builtin
-       command.  Ordinarily, variables and their values are shared between the
+       變數 local to the function may be declared with the local 內建
+       command.  Ordinarily, 變數 and their values are shared between the
        function and its caller.
 
-       The  FUNCNEST  variable,  if  set  to  a  numeric value greater than 0,
+       The  FUNCNEST 變數,  if  set  to  a  numeric value greater than 0,
        defines a maximum function nesting level.   Function  invocations  that
        exceed the limit cause the entire command to abort.
 
@@ -602,59 +489,53 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
        may be exported so that subshells automatically have them defined  with
        the  -f  option  to  the  export builtin.  A function definition may be
        deleted using the -f option to the  unset  builtin.   Note  that  shell
-       functions and variables with the same name may result in multiple iden‐
+       functions and 變數 with the same name may result in multiple iden‐
        tically-named entries in the environment passed to  the  shell's  chil‐
        dren.  Care should be taken in cases where this may cause a problem.
 
-       Functions may be recursive.  The FUNCNEST variable may be used to limit
+       Functions may be recursive.  The FUNCNEST 變數 may be used to limit
        the depth of the function call stack and restrict the number  of  func‐
        tion  invocations.   By  default,  no limit is imposed on the number of
        recursive calls.
 
 ## ARITHMETIC EVALUATION
-       The shell allows arithmetic expressions to be evaluated, under  certain
+shell 允許 arithmetic expressions to be evaluated, under  certain
        circumstances  (see the let and declare builtin commands and Arithmetic
        Expansion).  Evaluation is done in fixed-width integers with  no  check
        for  overflow, though division by 0 is trapped and flagged as an error.
-       The operators and their precedence, associativity, and values  are  the
-       same  as in the C language.  The following list of operators is grouped
-       into levels of equal-precedence operators.  The levels  are  listed  in
-       order of decreasing precedence.
+       The operators and their [precedence](http://lirobo.blogspot.tw/2015/12/blog-post_12.html), associativity, and values
+       跟 C 語言一樣 (類似？？)。下列 operators 列表以相同優先序為群組，往下優先權越低。
 
-       id++ id--
-              variable post-increment and post-decrement
-       ++id --id
-              variable pre-increment and pre-decrement
-       - +    unary minus and plus
-       ! ~    logical and bitwise negation
-       **     exponentiation
-       * / %  multiplication, division, remainder
-       + -    addition, subtraction
-       << >>  left and right bitwise shifts
-       <= >= < >
-              comparison
-       == !=  equality and inequality
-       &      bitwise AND
-       ^      bitwise exclusive OR
-       |      bitwise OR
-       &&     logical AND
-       ||     logical OR
-       expr?expr:expr
-              conditional operator
-       = *= /= %= += -= <<= >>= &= ^= |=
-              assignment
-       expr1 , expr2
-              comma
+operators|C 語言|說明
+---------|------|----
+id++ id--|      |post-increment and post-decrement
+++id --id|      |pre-increment and pre-decrement
+- +      |      |unary minus and plus
+! ~      |以上同一等級？？|logical and bitwise negation
+**       |http://lirobo.blogspot.tw/2015/12/blog-post_12.html 沒列到|exponentiation
+* / %    |以下一致|multiplication, division, remainder
++ -      |        |addition, subtraction
+<< >>    |        |left and right bitwise shifts
+<= >= < >|        |comparison
+== !=    |        |equality and inequality
+&        |        |bitwise AND
+^        |        |bitwise exclusive OR
+\|       |        |bitwise OR
+&&       |        |logical AND
+\|\|     |        |logical OR
+expr?expr:expr|   |conditional operator
+= *= /= %= += -= <<= >>= &= ^= \|=||assignment
+expr1 , expr2|    |comma
 
-       Shell  variables  are  allowed as operands; parameter expansion is per‐
+operands 可以是 Shell 變數; parameter expansion is per‐
        formed before the expression is evaluated.  Within an expression, shell
-       variables  may  also  be referenced by name without using the parameter
-       expansion syntax.  A shell variable that is null or unset evaluates  to
+       變數 may  also  be referenced by name without using the parameter
+       expansion syntax.  null 或 unset 的變數 evaluates  to
        0 when referenced by name without using the parameter expansion syntax.
-       The value of a variable is evaluated as an arithmetic  expression  when
-       it  is  referenced, or when a variable which has been given the integer
+       The value of a 變數 is evaluated as an arithmetic  expression  when
+       it  is  referenced, or when a 變數 which has been given the integer
        attribute using declare -i is assigned a value.  A null value evaluates
-       to  0.   A shell variable need not have its integer attribute turned on
+       to  0.   A shell 變數 need not have its integer attribute turned on
        to be used in an expression.
 
        Constants with a leading 0 are interpreted as octal numbers.  A leading
@@ -781,16 +662,13 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
 ## SIMPLE COMMAND EXPANSION
 當要執行簡單指令時，由左而右進行下列動作：
 
-1. the parser has  marked  as  variable  assignments 的字 (指令名稱前面) 及轉向的部份 saved for later processing.
+1. the parser has  marked  as 變數 assignments 的字 (指令名稱前面) 及轉向的部份 saved for later processing.
 2. 剩下的部份進行擴展後如有任何字，第一個字是指令名稱，剩下的為其引數。
 3. 進行[輸出入導向](bash-redirection.md)
 4. 在變數指定前，= 後面的部份進行 tilde expansion、parameter expansion、command substitution、arithmetic expansion、及 quote removal
 
-如果沒指令名稱，變數指定影響目前
-       shell  environment.  Otherwise, the variables are added to the environ‐
-       ment of the executed command and do not affect the current shell  envi‐
-       ronment.   If  any  of  the assignments attempts to assign a value to a
-       readonly variable, an error occurs, and the command exits with  a  non-
+如果沒指令名稱，變數指定影響目前 shell 的環境變數；否則成為執行指令的環境變數。If  any  of  the assignments attempts to assign a value to a
+       唯讀變數, an error occurs, and the command exits with  a  non-
        zero status.
 
 如果無指令名稱，仍進行[輸出入導向](bash-redirection.md)，但不影響目前 shell 環境。[輸出入導向](bash-redirection.md) 失敗導致指令結束回傳非 0。
@@ -810,21 +688,18 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
 1. 指令名稱不含「/」，依下列順序哪個先搜尋到找到執行
 	1. shell function (invoked as described above in FUNCTIONS)
 	1. [內建指令](builtin.md)
-	1. [hash 表](builtin-hash.md)
+	1. [hash 表](http://lirobo.blogspot.com/2017/11/bash-hash.html)
 	1. PATH 路徑中同名的執行檔
 	1. 有 shell function command_not_found_handle，以原本指令 (含引數) 作為引數執行 command_not_found_handle
 	1. 印錯誤訊息並回傳 exit status of 127.
 
-       Bash 使用 [hash 表](builtin-hash.md) 記憶執行檔的完整路徑
-       performed  only  if the command is not found in the hash table.
+       Bash 使用 [hash 表](http://lirobo.blogspot.com/2017/11/bash-hash.htmltin-hash.md) 快取執行檔的完整路徑。
 
-shell 在 a separate 執行環境執行 the named program.  Argument 0 is set to the name given, and the remain‐
-       ing arguments to the command are set to the arguments given, if any.
+shell 在 a separate 執行環境執行 the named program.
 
 如果找到的檔案不是執行檔，會假設為 shell script，會初始化一個新的 subshell 來執行
        with  the  exception  that
-       the  locations  of  commands  remembered  by the parent (見 [hash](builtin-hash.md
-       ) are retained by the child.
+       the  locations  of  commands  remembered  by the parent (見 [hash](http://lirobo.blogspot.com/2017/11/bash-hash.html) are retained by the child.
 
 shell script, a file containing shell commands.
 
@@ -839,7 +714,7 @@ The shell has an 執行環境，包含：
 * 工作目錄 as set by cd, pushd, or popd, or 繼承 the shell at invocation
 * the  file  creation  mode mask as set by umask or 繼承自 the shell's parent
 * current traps set by trap
-* shell parameters that are set by variable assignment or with set or inherited from the shell's parent in the environment
+* shell parameters that are set by 變數 assignment or with set or inherited from the shell's parent in the environment
 * shell  functions  defined during execution or inherited from the shell's parent in the environment
 * options enabled at invocation (either by default  or  with  command-line arguments) or by set
 * options enabled by shopt
@@ -851,7 +726,7 @@ The shell has an 執行環境，包含：
 * 開啟的檔案，會加上指令的[輸出入導向](bash-redirection.md)
 * 工作目錄
 * the file creation mode mask
-* shell variables and functions  marked  for  export,  along  with variables exported for the command, passed in the environment
+* shell 變數 and functions  marked  for  export,  along  with 變數 exported for the command, passed in the environment
 * traps caught by the shell are reset to the values inherited from the shell's parent, and traps ignored by the shell are ignored
 
        A command invoked  in  this  separate  environment  cannot  affect  the
@@ -875,9 +750,7 @@ The shell has an 執行環境，包含：
        calling shell as modified by redirections.
 
 ## ENVIRONMENT
-       When a program is invoked it is given an array of  strings  called  the
-       environment.   This  is  a  list  of  name-value  pairs,  of  the  form
-       name=value.
+環境變數是 a list  of  name-value  pairs,  of  the  form name=value.
 
        The shell provides several ways  to  manipulate  the  environment.   On
        invocation, the shell scans its own environment and creates a parameter
@@ -900,7 +773,7 @@ The shell has an 執行環境，包含：
        parameter assignments are placed in the environment for a command,  not
        just those that precede the command name.
 
-       When  bash  invokes  an  external command, the variable _ is set to the
+       When  bash  invokes  an  external command, the 變數 _ is set to the
        full filename of the command and passed to that command in its environ‐
        ment.
 
@@ -1091,12 +964,12 @@ exit status 是系統呼叫 waitpid 或 equivalent 回傳的值，落在 0 ~ 255
 ## HISTORY
        When the -o history option to the set builtin  is  enabled,  the  shell
        provides access to the command history, the list of commands previously
-       typed.  The value of the HISTSIZE variable is used  as  the  number  of
+       typed.  The value of the HISTSIZE 變數 is used  as  the  number  of
        commands to save in a history list.  The text of the last HISTSIZE com‐
        mands (default 500) is saved.  The shell stores  each  command  in  the
-       history  list  prior to parameter and variable expansion (見 [EXPANSION](bash-expansion.md)
+       history  list  prior to parameter and 變數 expansion (見 [EXPANSION](bash-expansion.md)
        ) but after history expansion is performed, subject to the  values
-       of the shell variables HISTIGNORE and HISTCONTROL.
+       of the shell 變數 HISTIGNORE and HISTCONTROL.
 
        On startup, the history is initialized from the file named by the vari‐
        able HISTFILE (default ~/.bash_history).  The file named by  the  value
@@ -1107,13 +980,13 @@ exit status 是系統呼叫 waitpid 或 equivalent 回傳的值，落在 0 ~ 255
        file  is  read, lines beginning with the history comment character fol‐
        lowed immediately by a digit are interpreted as timestamps for the pre‐
        ceding history line.  These timestamps are optionally displayed depend‐
-       ing on the value of the HISTTIMEFORMAT variable.   When  a  shell  with
+       ing on the value of the HISTTIMEFORMAT 變數.   When  a  shell  with
        history  enabled  exits,  the  last $HISTSIZE lines are copied from the
        history list to $HISTFILE.  If the histappend shell option  is  enabled
        (見 [SHELL BUILTIN COMMANDS](builtin.md) shopt 的描述), the
        lines are appended to the history file, otherwise the history  file  is
        overwritten.   If  HISTFILE  is  unset,  or  if  the  history  file  is
-       unwritable, the history is not saved.  If the  HISTTIMEFORMAT  variable
+       unwritable, the history is not saved.  If the  HISTTIMEFORMAT 變數
        is  set,  time  stamps are written to the history file, marked with the
        history comment character, so they may be preserved across  shell  ses‐
        sions.   This  uses  the history comment character to distinguish time‐
@@ -1130,7 +1003,7 @@ exit status 是系統呼叫 waitpid 或 equivalent 回傳的值，落在 0 ~ 255
        history list.
 
        The shell allows control over which commands are saved on  the  history
-       list.  The HISTCONTROL and HISTIGNORE variables may be set to cause the
+       list.  The HISTCONTROL and HISTIGNORE 變數 may be set to cause the
        shell to save only a subset of the commands entered.  The cmdhist shell
        option,  if enabled, causes the shell to attempt to save each line of a
        multi-line command in the same history entry, adding  semicolons  where
@@ -1182,9 +1055,9 @@ are  available. 互動式 shell 預設開啟歷史擴展，可以透過內建指
        the  history  list  without  actually  executing them, so that they are
        available for subsequent recall.
 
-       The shell allows control of the various characters used by the  history
-       expansion mechanism (see the description of histchars above under Shell
-       Variables).  The shell uses the history comment character to mark  his‐
+The shell allows control of the various characters used by the  history
+       expansion mechanism (see the description of histchars above under [Shell 變數](shell-variables.md)
+       ).  The shell uses the history comment character to mark  his‐
        tory timestamps when writing the history file.
 
    Event Designators
@@ -1311,7 +1184,7 @@ bash 跟傳統 sh 間有些微的差別，大多是因為 POSIX 規範。
        parentheses  to  force  it  into  a subshell, which may be stopped as a
        unit.
 
-       Array variables may not (yet) be exported.
+       Array may not (yet) be exported.
 
        There may be only one active coprocess at a time.
 

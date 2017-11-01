@@ -15,33 +15,23 @@
 
 其它
 * www.youtube.com
-* https://www.catchplay.com
+* https://www.catchplay.com (電影 $80/片 或 $60/片)
 * [LiTV](https://www.litv.tv)
-* http://chtvideo.hinet.net
-* https://tv.line.me
+* http://chtvideo.hinet.net ($70 or $129/月+)
+* [Line TV](https://tv.line.me)
 * https://tw.video.yahoo.com
 * http://www.eyesplay.org/
 * https://www.netflix.com/
-* [愛奇藝](http://tw.iqiyi.com)
+* [愛奇藝](http://tw.iqiyi.com) (VIP)
 * http://vmus.co/ (歐美影集簡中字幕)
 
-他們在畢業的前一天爆炸 II
-* [Line TV](https://tv.line.me)
-* [公視+7](http://vod7.pts.org.tw)
-* KKTV？
+[2017 南方影展](http://tw.iqiyi.com/kszt/2017southtaiwan.html)
 
-《麻醉風暴2》週六晚上 9:00 公視首播，LINE TV 30 分後上架，愛奇藝台灣站與 KKTV 10:00 上架，隔週中午 12:00 YAHOO TV 推出。
+告別、TMD 天堂、水下三十米、望月
 
 藍色大門
 * https://www.litv.tv/vod/movie/content.do?id=VD00000252 ($99/月)
 * http://chtvideo.hinet.net ($129/月+)
-
-德布西森林
-* http://chtvideo.hinet.net ($70 or $129/月+)
-* https://www.catchplay.com/tw/search?keyword=德布西森林 ($80)
-* http://tw.iqiyi.com/v_19rr7huqfo.html (VIP)
-
-冰與火之歌
 
 [英文歌](../english_song.md)
 
@@ -56,6 +46,7 @@
 * 10 http://jo90j00.web.tv/video/2016-10-720p__ueilvevsmk2
 * http://jp01.jplovetv.com/search/label/2016日本電視劇-逃避雖可恥但有用(月薪嬌妻)
 
+仁醫
 
 1964年：《荒野大鏢客》（A Fistful of Dollars）
 

@@ -50,7 +50,7 @@
        expanded value.
 
 ## Parameter Expansion
-「$」字元引入參數擴展、指令取代、或算術擴展。參數名子可用 {} 包起來，以避免跟緊接著的字元有錯誤連結。名子是兩位以上數子，必須用 {} 包起來。
+「$」字元引入參數擴展、指令取代、或算術擴展。參數名稱可用 {} 包起來，以避免跟緊接著的字元有錯誤連結。名稱是兩位以上數子，必須用 {} 包起來。
 
        ${parameter}
               The  value of parameter is substituted.  The braces are required

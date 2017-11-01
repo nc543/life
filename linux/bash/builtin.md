@@ -1,5 +1,5 @@
 # 內建指令
-shell 本身提供的指令
+shell 本身提供的指令，有些 shell 用外部指令取代。
 
 除非特別說明，接受「-」開頭選項的內建指令接受「--」來表示選項的結束。
 但「:」、「true」、「false」、及「test」並不接受選項，也就不處理「--」。
@@ -627,7 +627,7 @@ If command is not specified, redirections 成功 in the current shell, 回傳 0�
               an error occurs.
 
 ## hash
-見 [hash](builtin-hash.md)
+見 [hash](http://lirobo.blogspot.com/2017/11/bash-hash.html)
 
 ## help [-dms] [pattern]
               Display  helpful information about builtin commands.  If pattern
@@ -726,9 +726,7 @@ If command is not specified, redirections 成功 in the current shell, 回傳 0�
               error occurs or an invalid option is encountered.
 
 ## let arg [arg ...]
-              Each arg is an arithmetic expression to be evaluated (see ARITH‐
-              METIC EVALUATION above).  If the last arg evaluates  to  0,  let
-              returns 1; 0 is returned otherwise.
+              每個 arg 是要 evaluated 的 arithmetic expression (見 ARITHMETIC EVALUATION)。如果最後 arg evaluates 為 0，回傳 1，否則回傳 1。
 
 ## local [option] [name[=value] ...]
               For  each  argument, a local variable named name is created, and
@@ -1106,27 +1104,21 @@ Exit a login shell.
               one is created.  The return status is false if  any  sigspec  is
               invalid; otherwise trap returns true.
 
-## type [-aftpP] name [name ...]
-type 指令：標示指令，可用來看指令是否存在。
-              With  no options, indicate how each name would be interpreted if
-              used as a command name.  If the -t option is used, type prints a
-              string  which  is  one  of alias, keyword, function, builtin, or
-              file if  name  is  an  alias,  shell  reserved  word,  function,
-              builtin,  or disk file, respectively.  If the name is not found,
-              then nothing  is  printed,  and  an  exit  status  of  false  is
-              returned.   If  the  -p  option is used, type either returns the
-              name of the disk file that would be executed if name were speci‐
-              fied as a command name, or nothing if ``type -t name'' would not
-              return file.  The -P option forces a PATH search for each  name,
-              even if ``type -t name'' would not return file.  If a command is
-              hashed, -p and -P print the hashed value, which is not necessar‐
-              ily  the  file  that appears first in PATH. [hash](builtin-hash.md) If the -a option is
-              used, type prints all of the places that contain  an  executable
-              named name.  This includes aliases and functions, if and only if
-              the -p option is not also used.  The table of hashed commands is
-              not  consulted  when  using  -a.  The -f option suppresses shell
-              function lookup, as with the command builtin.  type returns true
-              if all of the arguments are found, false if any are not found.
+## type
+內建指令
+```
+type [-aftpP] name [name ...]
+```
+查所有 name 作為指令的型態，有 alias、keyword (shell 保留字)、function、builtin、和 file。
+所有 name 都找到回傳 true，否則回傳 false，可用來看指令是否存在。
+
+選項
+* 無：印出每個 name 的解釋
+* -t： 印出 alias、keyword、function、builtin、或 file 之一；如果找不到，不印。
+* If  the  -p  option is used, type either returns the name of the disk file that would be executed if name were specified as a command name, or nothing if ``type -t name'' would not return file.
+* The -P option forces a PATH search for each  name, even if ``type -t name'' would not return file.  If a command is hashed, -p and -P print the hashed value, which is not necessarily  the  file  that appears first in PATH. [hash](http://lirobo.blogspot.com/2017/11/bash-hash.html)
+* If the -a option is used, type prints all of the places that contain  an  executable named name.  This includes aliases and functions, if and only if the -p option is not also used.  The table of hashed commands is not  consulted  when  using  -a.
+* The -f option suppresses shell function lookup, as with the command builtin.
 
 ## ulimit [-HSTabcdefilmnpqrstuvx [limit]]
 控制 shell 及衍生的 process 可用的資源。參數沒指定資源時，預設是 -f，指檔案最大可寫入的大小。預設亦同時設定 hard limit 及 soft limit，用 -H 及 -S 選項分別可指定只設定 hard limt 或 soft limit。soft limit 可設定增加到 hard limit。hard limit 設定之後 root 才能增加。

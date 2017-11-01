@@ -27,3 +27,6 @@
 根據其脈絡，台灣一詞也只是代表西拉雅族的語言來源
 
 [與其說民國是被毛澤東終結的，不如說是1927年被蔣介石顛覆的](https://www.thenewslens.com/article/65927)
+<a href="http://www.edu.tw/userfiles/file/iongji/700iongji_1031222.pdf">推薦用字700字詞</a><br />
+<a href="http://www.edu.tw/FileUpload/3677-15601/Documents/guantsik_960523.pdf">臺灣閩南語漢字之選用原則</a><br />
+http://www.edu.tw/pages/list1.aspx?Node=3652&amp;Type=1&amp;Index=6&amp;WID=c5ad5187-55ef-4811-8219-e946fe04f725

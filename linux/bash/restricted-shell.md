@@ -4,7 +4,7 @@
 * 改變目錄 (cd)
 * setting or unsetting the values of SHELL, PATH, ENV, or BASH_ENV
 * 執行或用內建指令 . 執行包含 / 的檔名
-* specifying  a  filename containing a slash as an argument to the -p option to the hash builtin command 見 [hash](builtin-hash.md)
+* specifying  a  filename containing a slash as an argument to the -p option to the hash builtin command 見 [hash](http://lirobo.blogspot.com/2017/11/bash-hash.html)
 * 匯入 function 定義 from  the  shell  environment  at startup
 * parsing  the  value  of  SHELLOPTS from the shell environment at startup
 * [輸出導向](bash-redirection.md) 使用 >, >|, <>, >&, &>, and >> redirection operators

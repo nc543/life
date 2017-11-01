@@ -17,7 +17,10 @@ Bluetooth 是 master/slave 架構的封包協定，一個 master 可以跟 7 個
 	* Enhanced Retransmission Mode (ERTM) 實作 reliable L2CAP 通道，然而 Streaming Mode (SM) 實作沒有重傳及流量控制的 unreliable channel
 	* Unicast Connectionless Data：允許未建立 explicit L2CAP 通道送服務資料，作為使用者 action and reconnection/transmission of data 間低延遲應用的需要，只適合少量資料。
 	* Enhanced Power Control
-* 4.0 + LE：包含 Classic Bluetooth、Bluetooth high speed、及 Bluetooth low energy (Wibree、Bluetooth ULP (Ultra Low Power)、BLE、Bluetooth Smart)。Classic Bluetooth 是傳統 Bluetooth 協定，Bluetooth high speed 基於 Wi-Fi，而 Bluetooth low energy 是全新的協定作為 rapid build-up of simple links aimed at very low power applications。single-mode 只實作 Bluetooth low energy，而 dual-mode 則整合 Bluetooth low energy 到 Classic Bluetooth。此外改善 Generic Attribute Profile (GATT) 及 Security Manager (SM) services with AES Encryption，改善 audio Host Controller Interface
+* 4.0 + LE：包含 Classic Bluetooth、Bluetooth high speed、及 Bluetooth low energy。此外改善 Generic Attribute Profile (GATT) 及 Security Manager (SM) services with AES Encryption，改善 audio Host Controller Interface
+	* Classic Bluetooth：傳統 Bluetooth 協定
+	* Bluetooth high speed：於 Wi-Fi
+	* Bluetooth low energy (Wibree、Bluetooth ULP (Ultra Low Power)、BLE、Bluetooth Smart)：全新的協定，作為非常低耗電應用快速建立簡單連接。single-mode 只實作 Bluetooth low energy，而 dual-mode 則整合 Bluetooth low energy 到 Classic Bluetooth。
 * 4.1：軟體更新增進可用性
 * 4.2：新增一些 IoT 用的功能
 * 5：主要新增一些 IoT 用的功能
@@ -52,6 +55,11 @@ Sony LDAC 可提供高達 990kbps 的頻寬 (傳統藍芽音訊三倍資料量)�
 遙控器
 
 ### Headset (HSP) or Hands-Free (HFP) profiles
+
+免持協定 (HFP) v1.2
+免持協定 (HFP) v1.6
+藍牙立體聲音訊傳輸規範 (A2DP) 1.0
+影音遙控規範 (AVRCP) v1.4 – 控制及目標角色
 
 ## aptX on Linux NB/PC
 * https://askubuntu.com/questions/425333/how-to-make-aptx-capable-bluetooth-equipment-work-with-ubuntu

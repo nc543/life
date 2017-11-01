@@ -42,6 +42,11 @@ http://blog.wildsky.cc/posts/markdown-tool/
 ## 其它
 http://pages.tzengyuxio.me/pandoc/
 
+## TOC
+* https://github.com/bkrem/make-toc.sh
+* https://github.com/ekalinin/github-markdown-toc
+* https://lempstacker.com/tw/Use-Script-Auto-Create-TOC-For-Markdown-File/
+
 * [Test](#test)
 * [1. ch1](#1)
 * [2. ch2](#2)
