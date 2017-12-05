@@ -54,7 +54,7 @@ containing the function call completes.
 停用 pathname expansion.
 
 ## -h
-記憶執行時 looked up 的指令路徑，預設是開啟的。
+記憶執行時查到的指令路徑，預設是開啟的。
 
 ## -k
 All  arguments  in the form of assignment statements are
@@ -69,9 +69,8 @@ Monitor  mode.   Job control is enabled.  This option is
                       pletes, the shell prints a line containing its exit sta‐
                       tus.
 
-## -n      Read commands but do not execute them.  This may be used
-                      to  check  a  shell  script  for syntax errors.  This is
-                      ignored by interactive shells.
+## -n
+讀取指令但不執行。可用來檢查 shell script 是否有 syntax errors。interactive shell 忽略此選項。
 
 ## -o
 -o：列出目前選項設定<br>

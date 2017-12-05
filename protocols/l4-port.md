@@ -20,3 +20,7 @@ Windows Server 2008 with Exchange Server 2007 installed|1025 ~ 60000
 all versions of Windows since Windows 2000 have the option of specifying a custom range anywhere within 1025–65535.
 
 /proc/sys/net/ipv4/ip_local_port_range
+
+[查看 Linux UDP Port 被哪隻程式(Process)佔用](https://blog.longwin.com.tw/2017/11/linux-port-process-udp-check-2017)：
+	* sudo ss (socket statistics)
+	* sudo netstat

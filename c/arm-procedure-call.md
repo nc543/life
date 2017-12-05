@@ -65,3 +65,10 @@ tmbrout: ...
 * PC is 8 bytes (2 instructions) ahead of “mov lr,pc”
 * Bit 0 of R12 is 1, meaning a jump to thumb code in “bx r12”
 * Bit 0 of LR is 0, meaning a jump to ARM code in “bx lr”
+
+## 其它
+一個 stack frame 包含一個 function call 所有需要的資料：引數、返回位址、暫存器備份、local variables. Stack-allocated objects are part of these local variables.
+
+只存在 during the execution time of a function，不用擔心 memory leaks。
+
+Only objects of fixed size known at compile time can be allocated on the stack. (除了 funny things like Variable-Length Arrays in C99. GCC allocates them on the stack.) This way we know the size of a stack frame at compile time, and can access objects on the stack with fixed offsets relative to the stack pointer.

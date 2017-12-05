@@ -13,3 +13,6 @@ DSD (Direct Stream Digital)
 LDAC
 
 http://www.masters.tw/89771/diy萬能遙控器
+
+
+http://www.csie.ntnu.edu.tw/~u91029/Audio.html

@@ -344,9 +344,12 @@ complete -pr [-DE] [name ...]
 ## continue [n]
 直接開始下一回 for、while、until、或 select 封閉的控制迴圈。如果有 n，開始第 n 層封閉迴圈。如果 n 超出所有封閉迴圈層數，則使用最外層。回傳值 0，除非 n < 1。
 
-## declare [-aAfFgilnrtux] [-p] [name[=value] ...]
-## typeset [-aAfFgilnrtux] [-p] [name[=value] ...]
-              Declare  variables and/or give them attributes.  If no names are
+## declare, typeset, local, readonly
+```
+declare [-aAfFgilnrtux] [-p] [name[=value] ...]
+typeset [-aAfFgilnrtux] [-p] [name[=value] ...]
+```
+              宣告變數或設定變數屬性。If no names are
               given then display the values of variables.  The -p option  will
               display the attributes and values of each name.  When -p is used
               with name arguments, additional options, other than -f  and  -F,
@@ -370,9 +373,7 @@ complete -pr [-DE] [name ...]
               -A     Each name is an associative array  variable  (see  Arrays
                      above).
               -f     Use function names only.
-              -i     The variable is treated as an integer; arithmetic evalua‐
-                     tion (see ARITHMETIC EVALUATION above) is performed  when
-                     the variable is assigned a value.
+              -i     整數
               -l     When  the  variable  is  assigned a value, all upper-case
                      characters are converted to lower-case.   The  upper-case
                      attribute is disabled.
@@ -397,8 +398,8 @@ complete -pr [-DE] [name ...]
 
               Using `+' instead of `-' turns off the attribute  instead,  with
               the exceptions that +a may not be used to destroy an array vari‐
-              able and +r will not remove the readonly attribute.   When  used
-              in a function, declare and typeset make each name local, as with
+              able and +r will not remove the readonly attribute. 當用在
+              函數裡, declare and typeset make each name local, as with
               the local command, unless the -g option is supplied.  If a vari‐
               able  name  is  followed by =value, the value of the variable is
               set to value.  When using -a or -A and the  compound  assignment
@@ -413,6 +414,37 @@ complete -pr [-DE] [name ...]
               only  status for a readonly variable, an attempt is made to turn
               off array status for an array variable, or an attempt is made to
               display a non-existent function with -f.
+```
+local [option] [name[=value] ...]
+```
+              For  each  argument, a local variable named name is created, and
+              assigned value.  The option can be any of the  options  accepted
+              by declare.  When local is used within a function, it causes the
+              variable name to have a visible scope restricted to  that  func‐
+              tion and its children.  With no operands, local writes a list of
+              local variables to the standard output.  It is an error  to  use
+              local when not within a function.  The return status is 0 unless
+              local is used outside a function, an invalid name  is  supplied,
+              or name is a readonly variable.
+
+```
+readonly [-aAf] [-p] [name[=word] ...]
+```
+              The given names are marked readonly; the values of  these  names
+              may  not  be changed by subsequent assignment.  If the -f option
+              is supplied, the functions corresponding to  the  names  are  so
+              marked.  -a：限制變數為 indexed
+              arrays; -A：限制變數為 associative
+              arrays.   If both options are supplied, -A takes precedence.  If
+              no name arguments are given, or if the -p option is supplied,  a
+              列出唯讀變數。The other options may be
+              used to restrict the output to a subset of the set  of  readonly
+              names.   The -p option causes output to be displayed in a format
+              that may be reused as input.  If a variable name is followed  by
+              =word,  the  value  of  the variable is set to word.  The return
+              status is 0 unless an invalid option is encountered, one of  the
+              names is not a valid shell variable name, or -f is supplied with
+              a name that is not a function.
 
 ## dirs [-clpv] [+n] [-n]
               Without  options,  displays  the  list  of  currently remembered
@@ -728,16 +760,7 @@ If command is not specified, redirections 成功 in the current shell, 回傳 0�
 ## let arg [arg ...]
               每個 arg 是要 evaluated 的 arithmetic expression (見 ARITHMETIC EVALUATION)。如果最後 arg evaluates 為 0，回傳 1，否則回傳 1。
 
-## local [option] [name[=value] ...]
-              For  each  argument, a local variable named name is created, and
-              assigned value.  The option can be any of the  options  accepted
-              by declare.  When local is used within a function, it causes the
-              variable name to have a visible scope restricted to  that  func‐
-              tion and its children.  With no operands, local writes a list of
-              local variables to the standard output.  It is an error  to  use
-              local when not within a function.  The return status is 0 unless
-              local is used outside a function, an invalid name  is  supplied,
-              or name is a readonly variable.
+## local
 
 ## logout
 Exit a login shell.
@@ -945,22 +968,7 @@ Exit a login shell.
               ing  to a readonly variable) occurs, or an invalid file descrip‐
               tor is supplied as the argument to -u.
 
-## readonly [-aAf] [-p] [name[=word] ...]
-              The given names are marked readonly; the values of  these  names
-              may  not  be changed by subsequent assignment.  If the -f option
-              is supplied, the functions corresponding to  the  names  are  so
-              marked.   The  -a  option  restricts  the  variables  to indexed
-              arrays; the -A option restricts  the  variables  to  associative
-              arrays.   If both options are supplied, -A takes precedence.  If
-              no name arguments are given, or if the -p option is supplied,  a
-              list of all readonly names is printed.  The other options may be
-              used to restrict the output to a subset of the set  of  readonly
-              names.   The -p option causes output to be displayed in a format
-              that may be reused as input.  If a variable name is followed  by
-              =word,  the  value  of  the variable is set to word.  The return
-              status is 0 unless an invalid option is encountered, one of  the
-              names is not a valid shell variable name, or -f is supplied with
-              a name that is not a function.
+## readonly
 
 ## return [n]
               Causes a function to stop executing and return the value  speci‐
@@ -1166,11 +1174,10 @@ limit 可以是一個數字 (依據特定資源的單位)，或是 hard、soft�
               is true unless a supplied name is not a defined alias.
 
 ## unset [-fv] [-n] [name ...]
-              For  each  name,  remove the corresponding variable or function.
-              If the -v option is given, each name refers to a shell variable,
-              and  that  variable  is removed.  Read-only variables may not be
-              unset.  If -f is specified, each name refers to  a  shell  func‐
-              tion,  and the function definition is removed.  If the -n option
+              For  each  name,  移除 corresponding variable or function.
+              -v：移除變數。唯讀變數不能移除。
+              -f：移除 shell 函數。
+              If the -n option
               is supplied, and name is a variable with the nameref  attribute,
               name  will  be unset rather than the variable it references.  -n
               has no effect if the -f option is supplied.  If no  options  are

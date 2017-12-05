@@ -33,7 +33,7 @@
 * https://www.litv.tv/vod/movie/content.do?id=VD00000252 ($99/月)
 * http://chtvideo.hinet.net ($129/月+)
 
-[英文歌](../english_song.md)
+[英文歌](../song-e.md)
 
 驚爆焦點 Spotlight
 * https://www.youtube.com/watch?v=jt5L4Xc-HtY

@@ -74,7 +74,7 @@ token：一串字元 shell 視為一個單元，可以是字或運算子。
 回傳值是 exit status。如果被 signal n 結束，回傳值是 128+n 。
 
 ### Pipelines
-pipeline 是一系列指令用控制運算子「|」或「|&」將指令的輸出入串起來。
+pipeline 是一系列依序執行指令用控制運算子「|」或「|&」將前一個指令的輸出導到下一個指令的輸入。
 ```
 [time [-p]] [ ! ] command [ [|⎪|&] command2 ... ]
 ```
@@ -82,8 +82,8 @@ pipeline 是一系列指令用控制運算子「|」或「|&」將指令的輸�
 如果使用「|&」，連同標準錯誤輸出指令輸出在轉向後也導向下一個指令的標準輸入 (2>&1 | 的簡寫)。
 最簡單的 pipeline 只有一個指令。
 
-回傳值是最後指令的 exit status。但如果啟用 pipefail 選項時，
-是 the value of the last (rightmost) command
+回傳值是最後指令的回傳值。但如果啟用 pipefail 選項時，
+是 the value of 最後指令回傳的非 0 the last (rightmost) command
        to exit with a non-zero status, or zero if all commands  exit  success‐
        fully.
 
@@ -189,14 +189,10 @@ List 最後回傳最後指令執行的結果。
               the entire conditional expression.
 
        for name [ [ in [ word ... ] ] ; ] do list ; done
-              The list of words following in is expanded, generating a list of
-              items. 變數 name 設成 each element of this list in
-              turn, and list is executed each time.  If the in word  is  omit‐
-              ted,  the  for  command  executes  list once for each positional
-              parameter that is set (see PARAMETERS below).  The return status
-              is  the  exit  status of the last command that executes.  If the
-              expansion of the items following in results in an empty list, no
-              commands are executed, and the return status is 0.
+              擴展 in 之後的 word 列表產生許多項目，
+              變數 name 依序設成每個項目來執行 list。
+              如果省略 in word，則拿有設的位置參數當作項目。
+              如果沒項目可供執行，回傳值為 0。
 
        for (( expr1 ; expr2 ; expr3 )) ; do list ; done
               expr1、expr2、和 expr3 都是 arithmetic expression，如果省略任何一個，evaluate 為 1。首先，expr1 evaluated 依據
@@ -208,8 +204,8 @@ List 最後回傳最後指令執行的結果。
               sions is invalid.
 
        select name [ in word ] ; do list ; done
-              The list of words following in is expanded, generating a list of
-              items.  The set of expanded words is  printed  on  the  standard
+              擴展 in 之後的 word 列表產生許多項目，
+              The set of expanded words is  printed  on  the  standard
               error,  each  preceded  by a number.  If the in word is omitted,
               the positional parameters are printed  (see  PARAMETERS  below).
               The  PS3 prompt is then displayed and a line read from the stan‐
