@@ -1,10 +1,16 @@
 SUV (Sport Utility Vehicle) 運動型多用途車或運動型休旅車
+
 MPV (Multi-Purpose Vehicle)、MUV (Multi-Utility Vehicle)、Minivan：多功能休旅車，較不重視越野能力，整體高度大多比 SUV 低而風阻較小較省油
+
+CUV (Crossover Sport Utility Vehicle) 跨界休旅車
 
 車中床
 時鐘跟車速要準
 車頂行李架
 後中標準安全帶
+定速
+旅行車
+椅子攤平可睡兩人
 
 VW Sharan
 Volvo V60
@@ -20,14 +26,12 @@ Terios 小型 SUV (日規名為Be-go，另有雙生車Toyota Rush) 車長 4,065m
 Caddy-Maxi 長寬高 4,878/1,793/1,868 
 * DSG, 滑門六角鎖
 
-旅行車
-椅子攤平可睡兩人
-
 Skoda yeti
 Mazda5 759000
 三菱 outlander
 Mazda cx-9 168萬
 land rover discovery 360萬
+Peugeot 2008 4.2米
 
 ## 車頂架
 Thule
