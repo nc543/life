@@ -34,12 +34,14 @@ General-Purpose Media Descriptor Parameter
 * VBD (Voiceband Data) 轉換，含即不含 redundancy 或 FEC (forward error correction)
 * 也可以用來為特定 codec authorize 其它操作模式
 
-[MGCP VBD Package and General-Purpose Media Descriptor Parameter Package](https://tools.ietf.org/html/rfc6498) -- 除了 gpmd，亦說明the use of the Media Format Parameter package and Fax package with VBD, redundancy, and FEC.
+[MGCP VBD Package and General-Purpose Media Descriptor Parameter Package](https://tools.ietf.org/html/rfc6498) -- 除了 gpmd，亦說明「Media Format Parameter」package 及含 VBD、redundancy、和 FEC 的「Fax」package 的使用。
 
 ## a=fmtp
+format specific parameter
 ```
 a=fmtp:101 0-15
 ```
+format 101 的參數是 0-15
 
 ## a=silenceSupp
 `a=silenceSupp: <silenceSuppEnable> <silenceTimer> <suppPref> <sidUse> <fxnslevel>`

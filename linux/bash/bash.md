@@ -1,20 +1,4 @@
 # bash
-GNU 的 Bash (Bourne-Again SHell) 是一個指令語言直譯器，執行來自標準輸入或檔案的指令，與 sh 相容並結合 Korn shell (ksh) 及 C shell (csh) 好用的特點，可相容 IEEE POSIX 標準的 Shell and Utilities 部份。
-
-說明：
-* Shell：電腦的殼 (shell) 是指電腦的操作界面，輸入指令後輸出結果。可以是輸入文字的命令列界面 (Command Line Interface, CLI)，也可以是圖形使用者界面 (Graphical User Interface, GUI)。CLI 是個互動式的指令語言，也可以作為作業系統的腳本語言用來控制電腦如何執行，稱為 Shell Script。
-* 指令語言直譯器 (command language interpreter)：是指令直譯器，也是程式語言。作為指令直譯器，提供各式指令。作為程式語言，這些指令可以組合起來，建立包含指令的檔案成為一個指令，客製化用戶環境來自動化完成日常工作。
-* Shell Script 的字面意思是 Shell 的腳本，也就是執行指令的劇本。文字檔
-
-基本上，shell 就是執行指令的巨集處理器，擴展 text 及符號來建立較大的表示式。
-
-可以互動式或非互動式使用。互動式模式接受來自鍵盤輸入，而非互動式執行來自檔案的指令。
-
-shell 可以同步地或非同步地執行指令。同步的話，shell 等候指令完成才讀取下個指令。非同步的話，現行指令跟 shell 再去執行下個指令持續並行進行。轉向架構允許精確控制指令的輸出入。再則，shell 可設定指令執行環境的內容。
-
-shell 提供內建指令實作一些外部程式不方便處理的功能，例如 cd、break、continue、及 exec 直接處置 shell 自己，無法在外部程式實作。history、getopts、kill、或 pwd 等內建指令可以在外部實作，但使用內建指令較方便。
-
-雖然 shell 執行指令是重要的基本功能，大部分複雜的地方在於內建程式語言功能，像許多高階語言，shell 也提供變數、流程控制架構、[quoting](http://lirobo.blogspot.tw/2017/10/bash-quoting.html)、及函數。
 
 shell 特別為互動使用提供許多功能，包括 job control、[command line editing](bash-readline.md)、command history 及 aliases。
 
@@ -204,20 +188,13 @@ List 最後回傳最後指令執行的結果。
               sions is invalid.
 
        select name [ in word ] ; do list ; done
-              擴展 in 之後的 word 列表產生許多項目，
-              The set of expanded words is  printed  on  the  standard
-              error,  each  preceded  by a number.  If the in word is omitted,
-              the positional parameters are printed  (see  PARAMETERS  below).
-              The  PS3 prompt is then displayed and a line read from the stan‐
-              dard input.  If the line consists of a number  corresponding  to
-              one  of  the  displayed  words, then the value of name is set to
-              that word.  If the line is empty, the words and prompt are  dis‐
-              played again.  If EOF is read, the command completes.  Any other
-              value read causes name to be set to  null.   The  line  read  is
-              saved  in 變數 REPLY.  The list is executed after each
-              selection until a break command is executed.  The exit status of
-              select  is the exit status of the last command executed in list,
-              or zero if no commands were executed.
+              選擇項目。擴展 in 之後的 word 成為許多項目，並每項前置一個數字印在
+              standard error. 如果省略 word，則採用每項位置參數。
+              然後顯示 PS3 作為提詞後從標準輸入讀入一行存在變數 REPLY，
+              來用數字選擇前述項目設為 name，執行 list 直到 break。
+              如果輸入空行，會再顯示提詞。
+              輸入 EOF，指令結束。輸入其它，name 設為 null。
+              exit status 來自最後 list 指令，或 0 如果沒執行任何指令。
 
        case word in [ [(] pattern [ | pattern ] ... ) list ;; ] ... esac
               A case command first expands word, and tries to match it against

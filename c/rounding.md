@@ -6,19 +6,11 @@
 
 Banker's Rounding
 
-Another common way to re
-duce the significant bits
- representing a number 
-is to simply mask of
-f the N-M lower bits. Thi
-s process is known as 
-trunca-
-tion
- and results in a relatively large bias
+Another common way to reduce the significant bits representing a number
+is to simply mask off the N-M lower bits. This process is known as
+truncation and results in a relatively large bias
 
-Rounding
- is a means of reducing the prec
-ision of a number by removing a 
+Rounding is a means of reducing the precision of a number by removing a
 lower-order range of bits from that 
 number’s representation and possibly 
 modifying the remaining portion of the number to more accurately repre-

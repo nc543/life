@@ -13,3 +13,5 @@ OpenWrt 的特別
 * syslog => ubox's logd and logread
 
 /package/utils/spidev_test
+
+https://elinux.org/images/0/0a/ELC_OpenWrt_LEDE.pdf

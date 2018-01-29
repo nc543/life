@@ -897,14 +897,13 @@ Exit a login shell.
               invalid option is supplied.
 
 ## read [-ers] [-a aname] [-d delim] [-i text] [-n nchars] [-N nchars] [-p prompt] [-t timeout] [-u fd] [name ...]
-              One line is read from the  standard  input,  or  from  the  file
-              descriptor  fd supplied as an argument to the -u option, and the
-              first word is assigned to the first name, the second word to the
-              second  name, and so on, with leftover words and their interven‐
-              ing separators assigned to the last name.  If  there  are  fewer
-              words read from the input stream than names, the remaining names
-              are assigned empty values.  The characters in IFS  are  used  to
-              split  the  line  into words using the same rules the shell uses
+              從標準輸入或 fd 讀入一行，
+              first word 指定給 first name, the second word 給
+              second  name, 以此類推, with leftover words and their interven‐
+              ing separators 指定給 last name.  如果輸入的
+              words 少於 name 數目，剩下的 name 指定為空的值。
+              在 IFS 的字元用來
+              split  the  line  為 words using the same rules the shell uses
               for expansion (described above under Word Splitting).  The back‐
               slash  character  (\)  may be used to remove any special meaning
               for the next character read and for line continuation.  Options,
@@ -915,9 +914,8 @@ Exit a login shell.
                      new  values  are  assigned.   Other  name  arguments  are
                      ignored.
               -d delim
-                     The first character of delim is  used  to  terminate  the
-                     input line, rather than newline.
-              -e     如果標準輸入來自終端機，[readline](bash-readline.md) 用來
+                     delim 第一字元用來結束一行，而不是 newline。
+              -e     如果標準輸入來自終端機，使用 [readline](bash-readline.md)
                      obtain the line. Readline 使用目前的 (或預設的，如果 line
                      編輯原本沒啟用) 編輯設定。
               -i text

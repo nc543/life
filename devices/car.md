@@ -12,27 +12,6 @@ CUV (Crossover Sport Utility Vehicle) 跨界休旅車
 旅行車
 椅子攤平可睡兩人
 
-VW Sharan
-Volvo V60
-skoda yeti
-roomster
-veryca 1.3
-CITROEN C3 PICASSO
-outback
-forester
-
-Terios 小型 SUV (日規名為Be-go，另有雙生車Toyota Rush) 車長 4,065mm、車寬 1,695mm 車高 1,705mm 迴轉半徑 4.9米，3SZ-VE 1.5升直列4缸引擎，最大馬力103匹6,000轉，最大扭力13.8公斤米4,400轉，四速自排變速，2WD車重1,180公斤、4WD1,195公斤。
- 
-Caddy-Maxi 長寬高 4,878/1,793/1,868 
-* DSG, 滑門六角鎖
-
-Skoda yeti
-Mazda5 759000
-三菱 outlander
-Mazda cx-9 168萬
-land rover discovery 360萬
-Peugeot 2008 4.2米
-
 ## 車頂架
 Thule
 

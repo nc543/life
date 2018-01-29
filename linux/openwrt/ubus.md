@@ -62,7 +62,7 @@ for file, iwinfo, session, uci
 
 ## ubusd
 
-ubusd 內部是一個 uloop，監視預設 bind 到「/var/run/ubus.sock」的 fd 所發生的事件，
+ubusd 內部是一個 [uloop](http://lirobo.blogspot.com/2014/07/libubox-uloop.html)，監視預設 bind 到「/var/run/ubus.sock」的 fd 所發生的事件，
 
 ## 參考和延伸閱讀
 

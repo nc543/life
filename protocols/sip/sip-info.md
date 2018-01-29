@@ -4,31 +4,29 @@
 
 [RFC 2976](https://tools.ietf.org/html/rfc2976)： "legacy INFO usage"
 
-用建立的 SIP dialog 在兩端應用間傳送訊息。
-* 不用來更新 characteristics of a SIP dialog or session
+用建立的 SIP dialog，在兩端應用間傳送訊息。
+* 不會用來更新 SIP dialog 或 session 的 characteristics
 	* 比較：SIP re-INVITE、SIP UPDATE
 * 使用 an invite dialog [RFC5057](https://tools.ietf.org/html/rfc5057).
 
 ## Info Package mechanism
 
-An Info
-   Package specification defines 內容及語意 of the
+An Info Package specification 定義內容及語意 of the
    information carried in an INFO message associated with the Info
    Package.  The Info Package mechanism 也提供一個方式給 UA
  to indicate for which Info Packages they are willing to
    receive INFO requests, and which Info Package a specific INFO request
    is associated with.
 
-   A UA uses the Recv-Info header field, on a per-dialog basis, to
+   A UA 使用 Recv-Info header field, on a per-dialog basis, to
    indicate for which Info Packages it is willing to receive INFO
    requests.  A UA can indicate an initial set of Info Packages during
    dialog establishment and can indicate a new set during the lifetime
    of the invite dialog usage.
 
-      NOTE: A UA can use an empty Recv-Info header field (a header field
-      without a value) to indicate that it is not willing to receive
-      INFO requests for any Info Package, while still informing other
-      UAs that it supports the Info Package mechanism.
+      NOTE: 一個 UA 可以用沒值的 Recv-Info
+      來表示不想收到來自任何 Info Package 的 INFO 請求，
+      卻也隱含告知支援 Info Package 機制。
 
    When a UA sends an INFO request, it uses the Info-Package header
    field to indicate which Info Package is associated with the request.

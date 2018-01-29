@@ -1,7 +1,7 @@
 # SIP UPDATE
 RFC 3311 The Session Initiation Protocol (SIP) UPDATE Method
 
-讓呼叫端或受話端在 dialog (early 或 confirmed) 內更新 media 參數而不影響 dialog 本身的狀態
+讓發話端或受話端在 dialog (early 或 confirmed) 內更新 media 參數而不影響 dialog 本身的狀態
 * early dialog 或 early media：初始 INVITE 尚未完成，此時 media 已預先建立來傳 call progress tone
 * 更新 early media 參數，例如要 put on hold
 * early dial 時 re-INVITE 不能使用
