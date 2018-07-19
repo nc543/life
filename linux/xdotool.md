@@ -1,4 +1,8 @@
+## 安裝
 
+`sudo apt install xdotool`
+
+## 使用
 DISPLAY=:0 xdotool key space
 
 一般來說，keystroke 可以是任何 valid X Keysym 字串。

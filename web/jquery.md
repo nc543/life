@@ -17,7 +17,7 @@ jQuery 是一個 JavaScript Library，所有屬性及函數都定義在「jQuery
 ```
 註：JavaScript 在 HTML5 及所有現代瀏覽器是預設的腳本語言，所以 `<script>` 標籤裡不需要 `type="text/javascript"`。
 
-也改自 CDN (Content Delivery Network) 下載
+可改自 CDN (Content Delivery Network) 下載
 
 Google CDN:
 ```

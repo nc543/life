@@ -1,7 +1,7 @@
 # IPv6
 
 ## 沿革
-* v1, v2, v3：TCP 比 IP 早出現，v1 在 1973 (RFC 675)，v2 在 1977。後來 Jon Postel 發現 TCP 同時作為 end to end 協定，以及 packaging 和路由的協定，違反網路階層原則的發展方向不對，所以 TCP 就跟 IP 分家了，並同時使用版本 3 (1978)。
+* v1, v2, v3：IP 出現之前就有 TCP 了，TCP v1 在 1973 ([RFC 675](https://tools.ietf.org/html/rfc675))，TCP v2 在 1977。後來 Jon Postel 發現 TCP 同時作為 end to end 協定，以及封包 packaging 和路由的協定，違反網路階層原則的發展方向不對，TCP 跟 IP 才分家，並同時使用版本 3 (1978)。
 * v4：第一個 IP 穩定版本。RFC 760 (1980) -> RFC 791 (1981)
 * v5：[Internet Stream Protocol](https://en.wikipedia.org/wiki/Internet_Stream_Protocol) 用掉
 * v6：RFC 1883 (1995) -> RFC 2460 (1998) -> [RFC 8200](https://tools.ietf.org/html/rfc8200) (2017)
@@ -93,7 +93,5 @@ A link-local address is also based on the interface identifier, but uses a diffe
 Dual IP stack
 RFC 4213
 
-##
-1. [RFC 8200](https://tools.ietf.org/html/rfc8200)
-
-https://sites.google.com/site/ijonccc/protocols/ip
+## 其它參考及延伸閱讀
+* [IPv6 簡介](http://hanteye01.blog.fc2blog.us/blog-entry-1.html)

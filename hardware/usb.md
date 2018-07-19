@@ -11,9 +11,6 @@ USB 接頭
 * Lightning
 * MHL (Mobile High-Definition Link)
 
-傳輸介面
-* 無論是哪種 USB 接頭 (USB Type-A / Type-B / Type-C)，都可以搭載不同的傳輸介面 (USB 1.0 / USB2.0 / USB3.0)。
-
 用 USB 充電
 
 充電標準
@@ -38,7 +35,6 @@ D-  | 2 | 2            | 6       |White
 D+  | 3 | 3            | 7       |Green
 ID  | - | 4            |         |OTG 作為 Host 時接地，slave 時空接。
 GND | 4 | 5            | 8       |Black
-Type A 插頭接點向上時，接腳由右到左分別為 1、2、3、4。
 
 5V 電源
 
@@ -208,3 +204,20 @@ The information in the /proc/bus/usb/devices output is arranged in groups:
 
 Refer to linux/Documentation/usb/proc_usb_info.txt for more information on using the USB device filesystem information. 
 ```
+
+The basic types of transactions are as follows:
+■■ Control. Used to configure and enumerate a peripheral, allowing the host software to interrogate the
+peripheral to find out what it is and how it can use it. Every peripheral needs to support this traffic type.
+■■ Bulk. Reliable data transport that guarantees sequential reception of data. Retransmits are used to ensure
+the data is received correctly. Depending on the current bus utilization, the throughput with bulk transfers
+will vary. Typical uses of bulk transport are Disk-On-Keys and printers.
+■■ Interrupt. Meant for low bandwidth transfers with periodic transport needs. The host pre-schedules an
+interval at which the peripheral is queried. Unlike bulk, this transport type is guaranteed allocation on the bus
+for transport. The typical use is keyboards, mice, track-balls, and game controllers.
+■■ Isochronous. Guaranteed bandwidth, but not guaranteed reception. This method is typically associated
+with video cameras and audio speakers. It is used to insure that the data always has a path. During
+enumeration and configuration, the host determines if a configuration setting has enough bandwidth to talk
+with a certain peripheral. If sufficient bandwidth is not available, it rejects the configuration selection in favor
+of less bandwidth consumption.
+All peripherals support a single control endpoint and any number of bulk, interrupt, and isochronous endpoints to
+fit their application up to the maximum of 32 endpoints.
