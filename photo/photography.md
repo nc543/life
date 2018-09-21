@@ -1,7 +1,5 @@
 拍照要清楚至少要正確對焦及適當曝光，對於自動相機...
 
-級距
-
 ## 對焦
 對焦距離 = 物距 + 像距
 
@@ -23,10 +21,6 @@
 * 快門延遲 (Shutter lag)：快門按下到開始曝光，大部份是自動對焦造成的
 
 光圈跟快門決定到達底片的光通量
-
-ISO (感光度) 以 50, 100, 200, 400, 640, ..., 12800, 25600，表示，越大對光線的敏感度越強，但通常雜訊也越高
-* 在傳統底片，為了增加感光度會使用較大的感光粒子，所以產生的照片粒子也較大
-* 在數位相機是對應到跟 CCD 的影像訊號相乘的倍數，倍數越大連雜訊也放大了
 
 [Digital camera ISO speed and exposure index](https://en.wikipedia.org/wiki/Film_speed#Digital_camera_ISO_speed_and_exposure_index)
 

@@ -1,15 +1,4 @@
-# bash
-
 shell 特別為互動使用提供許多功能，包括 job control、[command line editing](bash-readline.md)、command history 及 aliases。
-
-## 指令格式
-`bash [options] [command_string | file]`
-
-整個指令由空白字元分成一系列字，一開始可能有些引數作為[選項 (option)](bash-options.md)，剩下為指令或要執行的檔名
-
-如果選項之後還有引數，且選項沒設 -c 或 -s，第一個引數會認定是一個檔名，檔案裡面包含許多指令。此時 $0 設為檔名，位置參數 $1、$2、... 依序設為之後的引數。
-
-bash 會讀取並執行檔案內的指令，然後離開。離開狀態碼是最後執行的指令的離開狀態碼。如沒有指令，離開狀態碼是 0。檔案首先會在目前目錄找，如沒有再找 PATH 指定的目錄。
 
 ## shell 運作
 
@@ -24,91 +13,11 @@ shell 運作的簡略描述：
 
 運算子 (operator) 包括[導向運算子](bash-redirection.md)及控制運算子
 
-## [INVOCATION](bash-invocation.md) (調用？，執行方式)
-
 有 x 屬性：可直接執行
 
-## DEFINITIONS, RESERVED WORDS, and SHELL GRAMMAR 定義，保留字及語法
-指令由許多字元組成，其中只於屬於 metacharacter 的字元能將一長串指令區隔成許多字 (word 或 token)。metacharacter 包括：
-* space 或 tab 字元，合稱 blank
-* 「<」與「>」，亦有輸出入導向功能 (redirection operator)
-* 「|」「&」「;」「(」「)」，這些組合出所有的指令控制運算子 (control operator)，區隔出子指令並控制執行方式。
-	* | 或 |&：串接前後指令的輸出入成為 pipeline
-	* &&：AND，前面指令執行成功 (回傳值 0) 才執行下個指令。
-	* ||：OR，前面指令執行失敗 (回傳值不為 0) 才執行下個指令。
-	* &：背景執行
-	* ; 或換行：執行
-	* ( 跟 )：subshell 執行
-	* 「;;」、「;&」、「;;&」：用在 case
-
-有些字有特殊作用，稱為保留字，只用在指令的第一個字、或 case/for 的第三字，大部分作為流程控制結構用，包括：
-* ! case coproc do done elif else esac fi for function if in select then until while { } time [[ ]]
-
-metacharacter 及保留字可經由 [QUOTING](http://lirobo.blogspot.tw/2017/10/bash-quoting.html) 跳脫其特殊意義。
-
-name 或 identifier：由英文字母、數字及「_」組成的字，不能以數字開頭，可作為 shell 變數或 function 名稱。
-
-token：一串字元 shell 視為一個單元，可以是字或運算子。
-
-### Simple Commands 簡單指令
-一個簡單指令依序由變數指定、指令名稱、blank 分隔的引數、輸出入轉向 redirections，最後以 control operator 結束。引數從指令名稱開始從 0 開始編號。
-
-簡單指令是由 control operator 切割，裡面最陽春要有指令名稱，用到的 metacharacter 除了輸出入轉向，就只有 blank。
-
-回傳值是 exit status。如果被 signal n 結束，回傳值是 128+n 。
-
-### Pipelines
-pipeline 是一系列依序執行指令用控制運算子「|」或「|&」將前一個指令的輸出導到下一個指令的輸入。
-```
-[time [-p]] [ ! ] command [ [|⎪|&] command2 ... ]
-```
-兩者皆將前面指令的標準輸出在指令輸出轉向 (redirection) 前透過 pipe 導向到下一個指令的標準輸入。
-如果使用「|&」，連同標準錯誤輸出指令輸出在轉向後也導向下一個指令的標準輸入 (2>&1 | 的簡寫)。
-最簡單的 pipeline 只有一個指令。
-
-回傳值是最後指令的回傳值。但如果啟用 pipefail 選項時，
-是 the value of 最後指令回傳的非 0 the last (rightmost) command
-       to exit with a non-zero status, or zero if all commands  exit  success‐
-       fully.
-
-如果 pipeline 前有保留字「!」, 邏輯反向離開狀態。
-
-所有 pipeline 指令結束後才回傳值。
-
-pipeline 前面可再加保留字 time，在結束時會回報執行所歷經的時間、耗用的使用者及系統時間。
-加選項 -p 採用 POSIX 輸出格式。
-當 shell 在 posix 模式, 如果下一個 token 以 '-' 開始，time 不作為保留字。
-變數 TIMEFORMAT 可設定顯示的格式 (見 description of TIMEFORMAT under [Shell 變數](shell-variables.md))。
-
-       在 posix 模式, time may be followed by a newline.  In
-       this case, the shell displays the total user and system  time  consumed
-       by  the shell and its children.  The TIMEFORMAT 變數 may be used to
-       specify the format of the time information.
-
-每個指令都在獨立的 process (i.e., subshell) 執行
-一個 pipeline 稱為一個 job
-
-### Lists
-多個 pipeline 可串起來稱為 List，依據指令控制運算子 pipeline 或其之間有特定的執行關係，如下：
-* 「;」或換行：等候結束。
-* 「&」：在 subshell 背景執行，不等候結束直接回傳 0。
-* 「&&」：執行結果回傳 0 (表示成功)，才執行後面的指令。
-* 「||」：執行結果回傳 1 (表示失敗)，才執行後面的指令。
-其中「&&」跟「||」equal precedence，再來是「;」跟「&」equal precedence。
-
-List 最後回傳最後指令執行的結果。
+## SHELL GRAMMAR 語法
 
 ### Compound Commands 複合指令
-
-(list)：在 subshell 執行，結束後不影響原本環境變數。(見 COMMAND  EXECUTION  ENVIRONMENT).
-
-{ list; }：在同一 shell 執行。由於「{」、「 }」不是 metacharacter，而是保留字，需要有 metacharacter 區隔出字來，且 list 必須有「;」或換行表示最後的指令結束。
-
-((expression))：[算術運算](http://lirobo.blogspot.tw/2013/11/blog-post_9288.html)
-              The  expression  is  evaluated  according to the rules described
-              below under ARITHMETIC EVALUATION .  If the value of the  expres‐
-              sion  is  non-zero, the return status is 0 表示成功; otherwise the return
-              status is 1.  相當於內建指令 let "expression".
 
 [[ expression ]]
               Return a status of 0 or 1 depending on  the  evaluation  of  the
@@ -171,120 +80,6 @@ List 最後回傳最後指令執行的結果。
               The && and || operators do not evaluate expression2 if the value
               of  expression1  is  sufficient to determine the return value of
               the entire conditional expression.
-
-       for name [ [ in [ word ... ] ] ; ] do list ; done
-              擴展 in 之後的 word 列表產生許多項目，
-              變數 name 依序設成每個項目來執行 list。
-              如果省略 in word，則拿有設的位置參數當作項目。
-              如果沒項目可供執行，回傳值為 0。
-
-       for (( expr1 ; expr2 ; expr3 )) ; do list ; done
-              expr1、expr2、和 expr3 都是 arithmetic expression，如果省略任何一個，evaluate 為 1。首先，expr1 evaluated 依據
-              the rules described  below  under  ARITHMETIC  EVALUATION.
-              然後 expr2 一直 evaluated 直到為 0。非 0 時執行 list 且 expr3
-              evaluated.
-              回傳值 is the exit status of the last
-              command in list that is executed, or false if any of the expres‐
-              sions is invalid.
-
-       select name [ in word ] ; do list ; done
-              選擇項目。擴展 in 之後的 word 成為許多項目，並每項前置一個數字印在
-              standard error. 如果省略 word，則採用每項位置參數。
-              然後顯示 PS3 作為提詞後從標準輸入讀入一行存在變數 REPLY，
-              來用數字選擇前述項目設為 name，執行 list 直到 break。
-              如果輸入空行，會再顯示提詞。
-              輸入 EOF，指令結束。輸入其它，name 設為 null。
-              exit status 來自最後 list 指令，或 0 如果沒執行任何指令。
-
-       case word in [ [(] pattern [ | pattern ] ... ) list ;; ] ... esac
-              A case command first expands word, and tries to match it against
-              each pattern in turn, using the same matching rules as for path‐
-              name expansion (see Pathname  Expansion  below).   The  word  is
-              expanded  using  tilde  expansion, parameter and 變數擴展、
-              arithmetic  substitution,  command  substitution,  process
-              substitution  and  quote  removal.   Each  pattern  examined  is
-              expanded using tilde expansion, parameter  and 變數擴展、
-              arithmetic substitution, command substitution, and process
-              substitution.  If the shell option nocasematch is  enabled,  the
-              match  is  performed  without  regard  to the case of alphabetic
-              characters.  When a match is found, the  corresponding  list  is
-              executed. 如果使用 ;; operator, 不再進行後續比對
-              after the first pattern match.  Using ;& in  place  of
-              ;;  causes  execution  to continue with the list associated with
-              the next set of patterns.  Using ;;& in place of ;;  causes  the
-              shell  to  test  the next pattern list in the statement, if any,
-              and execute any associated list on a successful match.  The exit
-              status is zero if no pattern matches.  Otherwise, it is the exit
-              status of the last command executed in list.
-
-       if list; then list; [ elif list; then list; ] ... [ else list; ] fi
-              The if list is executed.  If its exit status is zero,  the  then
-              list  is  executed.   Otherwise,  each  elif list is executed in
-              turn, and if its exit status is  zero,  the  corresponding  then
-              list is executed and the command completes.  Otherwise, the else
-              list is executed, if present.  The exit status is the exit  sta‐
-              tus of the last command executed, or zero if no condition tested
-              true.
-
-       while list-1; do list-2; done
-       until list-1; do list-2; done
-              The while command continuously executes the list list-2 as  long
-              as the last command in the list list-1 returns an exit status of
-              zero.  The until command is  identical  to  the  while  command,
-              except  that  the test is negated; list-2 is executed as long as
-              the last command in list-1 returns a non-zero exit status.   The
-              exit  status  of the while and until commands is the exit status
-              of the last command executed in list-2, or zero if none was exe‐
-              cuted.
-
-### Coprocesses
-coprocess 其實就是背景執行指令加上跟指令建立雙向 pipe。
-
-格式：
-```
-coproc [NAME] command [redirections]
-```
-coproc 是保留字。
-建立一個稱為 NAME 的 coprocess，如果 NAME is not supplied, 預設名稱是 COPROC。
-如果 command 是簡單指令，NAME must not be supplied ；否則會被解釋成簡單指令的第一個字。
-當 coprocess 執行時, the shell 建立名為 NAME 的[陣列](array.md) in the context  of
-       the executing shell.  The standard output of command is connected via a
-       pipe to a file  descriptor  in  the  executing  shell,  and  that  file
-       descriptor  is  assigned  to NAME[0].  The standard input of command is
-       connected via a pipe to a file descriptor in the executing  shell,  and
-       that  file descriptor is assigned to NAME[1].  pipe 會先建立，然後才進行
-       [輸出入導向](bash-redirection.md)的部份。
-       The  file  descriptors  can be utilized as arguments to shell
-       commands and redirections using standard  word  expansions.   The  file
-       descriptors  are  not  available  in  subshells.  The process ID of the
-       shell spawned to execute the coprocess is available as the value of the
-       變數 NAME_PID.   The  wait builtin command may be used to wait for
-       the coprocess to terminate.
-
-### Shell Function Definitions
-       A shell function is an object that is called like a simple command  and
-       executes  a  compound  command with a new set of positional parameters.
-       Shell functions are declared as follows:
-
-       name () compound-command [redirection]
-       function name [()] compound-command [redirection]
-              This defines a function named name.  The reserved word  function
-              is  optional.   If  the  function reserved word is supplied, the
-              parentheses are optional.  The body of the function is the  com‐
-              pound  command  compound-command  (see Compound Commands above).
-              That command is usually a list of commands between { and },  but
-              may  be  any command listed under Compound Commands above.  com‐
-              pound-command is executed whenever name is specified as the name
-              of  a  simple  command.  When in posix mode, name may not be the
-              name of one of the POSIX  special  builtins.
-              The exit status  of  a
-              function  definition  is  zero unless a syntax error occurs or a
-              readonly function with the same name already exists.  When  exe‐
-              cuted,  the  exit status of a function is the exit status of the
-              last command executed in the body.  (見 FUNCTIONS)
-
-## COMMENTS 註解
-\# 開始的字到行末都會忽略。互動式 shell 可用內建指令 shopt 的 interactive_comments 關閉註解功能。
 
 ## PARAMETERS 參數
 參數泛指變數，代表一個儲存值的地方。有下列表示方式：
@@ -371,159 +166,6 @@ Assignment statements 亦可作為內建指令 alias、declare、typeset、expor
 ### [Shell 變數](shell-variables.md)
 
 ### [陣列](array.md)
-
-## ALIASES
-       Aliases  allow a string to be substituted for a word when it is used as
-       the first word of a simple command.  The  shell  maintains  a  list  of
-       aliases  that  may  be set and unset with the alias and unalias builtin
-       commands (見 [SHELL BUILTIN COMMANDS](builtin.md)).  The first  word  of  each
-       simple  command, if unquoted, is checked to see if it has an alias.  If
-       so, that word is replaced by the text of the alias.  The characters  /,
-       $,  `,  and = and any of the shell metacharacters or quoting characters
-       listed above may not appear in an alias name.  The replacement text may
-       contain  any  valid  shell  input, including shell metacharacters.  The
-       first word of the replacement text is tested for aliases,  but  a  word
-       that  is  identical to an alias being expanded is not expanded a second
-       time.  This means that one may alias ls to ls  -F,  for  instance,  and
-       bash  does  not try to recursively expand the replacement text.  If the
-       last character of the alias value is a blank,  then  the  next  command
-       word following the alias is also checked for alias expansion.
-
-       Aliases are created and listed with the alias command, and removed with
-       the unalias command.
-
-       There is no mechanism for using arguments in the replacement text.   If
-       arguments  are  needed,  a shell function should be used (see FUNCTIONS
-       below).
-
-       Aliases are not expanded when the shell is not interactive, unless  the
-       expand_aliases  shell option is set using shopt (
-       見 [SHELL BUILTIN COMMANDS](builtin.md) shopt 的描述).
-
-       The rules concerning the definition and use  of  aliases  are  somewhat
-       confusing.   Bash  always  reads  at  least  one complete line of input
-       before executing any  of  the  commands  on  that  line.   Aliases  are
-       expanded  when  a command is read, not when it is executed.  Therefore,
-       an alias definition appearing on the same line as another command  does
-       not  take  effect  until  the next line of input is read.  The commands
-       following the alias definition on that line are not affected by the new
-       alias.   This  behavior  is  also an issue when functions are executed.
-       Aliases are expanded when a function definition is read, not  when  the
-       function  is  executed,  because a function definition is itself a com‐
-       pound command.  As a consequence, aliases defined in a function are not
-       available  until  after  that function is executed.  To be safe, always
-       put alias definitions on a separate line, and do not use alias in  com‐
-       pound commands.
-
-       For almost every purpose, aliases are superseded by shell functions.
-
-## FUNCTIONS
-       A  shell  function,  defined  as  described  above under SHELL GRAMMAR,
-       stores a series of commands for later execution.  When the  name  of  a
-       shell  function  is used as a simple command name, the list of commands
-       associated with that function name is executed.  Functions are executed
-       in  the  context  of  the  current  shell; no new process is created to
-       interpret them (contrast this with the execution of  a  shell  script).
-       When  a  function is executed, the arguments to the function become the
-       positional parameters during its execution.  The special parameter # is
-       updated  to reflect the change.  Special parameter 0 is unchanged.  The
-       first element of the FUNCNAME 變數 is set to the name of the  func‐
-       tion while the function is executing.
-
-       All  other  aspects  of  the  shell execution environment are identical
-       between a function and its caller with these exceptions:  the DEBUG and
-       RETURN  traps  (見 [SHELL BUILTIN COMMANDS](builtin.md) trap 的描述
-       ) are not inherited unless the function has  been
-       given  the  trace attribute (see the description of the declare builtin
-       below) or the -o functrace shell option has been enabled with  the  set
-       builtin  (in  which  case  all  functions  inherit the DEBUG and RETURN
-       traps), and the ERR trap is not inherited unless the -o errtrace  shell
-       option has been enabled.
-
-       變數 local to the function may be declared with the local 內建
-       command.  Ordinarily, 變數 and their values are shared between the
-       function and its caller.
-
-       The  FUNCNEST 變數,  if  set  to  a  numeric value greater than 0,
-       defines a maximum function nesting level.   Function  invocations  that
-       exceed the limit cause the entire command to abort.
-
-       If  the  builtin command return is executed in a function, the function
-       completes and execution resumes with the next command after  the  func‐
-       tion  call.   Any  command  associated with the RETURN trap is executed
-       before execution resumes.  When a function completes, the values of the
-       positional  parameters  and the special parameter # are restored to the
-       values they had prior to the function's execution.
-
-       Function names and definitions may be listed with the -f option to  the
-       declare or typeset builtin commands.  The -F option to declare or type‐
-       set will list the function names only (and optionally the  source  file
-       and  line  number, if the extdebug shell option is enabled).  Functions
-       may be exported so that subshells automatically have them defined  with
-       the  -f  option  to  the  export builtin.  A function definition may be
-       deleted using the -f option to the  unset  builtin.   Note  that  shell
-       functions and 變數 with the same name may result in multiple iden‐
-       tically-named entries in the environment passed to  the  shell's  chil‐
-       dren.  Care should be taken in cases where this may cause a problem.
-
-       Functions may be recursive.  The FUNCNEST 變數 may be used to limit
-       the depth of the function call stack and restrict the number  of  func‐
-       tion  invocations.   By  default,  no limit is imposed on the number of
-       recursive calls.
-
-## ARITHMETIC EVALUATION
-shell 允許 arithmetic expressions to be evaluated, under  certain
-       circumstances  (see the let and declare builtin commands and Arithmetic
-       Expansion).  Evaluation is done in fixed-width integers with  no  check
-       for  overflow, though division by 0 is trapped and flagged as an error.
-       The operators and their [precedence](http://lirobo.blogspot.tw/2015/12/blog-post_12.html), associativity, and values
-       跟 C 語言一樣 (類似？？)。下列 operators 列表以相同優先序為群組，往下優先權越低。
-
-operators|C 語言|說明
----------|------|----
-id++ id--|      |post-increment and post-decrement
-++id --id|      |pre-increment and pre-decrement
-- +      |      |unary minus and plus
-! ~      |以上同一等級？？|logical and bitwise negation
-**       |http://lirobo.blogspot.tw/2015/12/blog-post_12.html 沒列到|exponentiation
-* / %    |以下一致|multiplication, division, remainder
-+ -      |        |addition, subtraction
-<< >>    |        |left and right bitwise shifts
-<= >= < >|        |comparison
-== !=    |        |equality and inequality
-&        |        |bitwise AND
-^        |        |bitwise exclusive OR
-\|       |        |bitwise OR
-&&       |        |logical AND
-\|\|     |        |logical OR
-expr?expr:expr|   |conditional operator
-= *= /= %= += -= <<= >>= &= ^= \|=||assignment
-expr1 , expr2|    |comma
-
-operands 可以是 Shell 變數; parameter expansion is per‐
-       formed before the expression is evaluated.  Within an expression, shell
-       變數 may  also  be referenced by name without using the parameter
-       expansion syntax.  null 或 unset 的變數 evaluates  to
-       0 when referenced by name without using the parameter expansion syntax.
-       The value of a 變數 is evaluated as an arithmetic  expression  when
-       it  is  referenced, or when a 變數 which has been given the integer
-       attribute using declare -i is assigned a value.  A null value evaluates
-       to  0.   A shell 變數 need not have its integer attribute turned on
-       to be used in an expression.
-
-       Constants with a leading 0 are interpreted as octal numbers.  A leading
-       0x  or  0X  denotes  hexadecimal.   Otherwise,  numbers  take  the form
-       [base#]n, where the optional base is a decimal number between 2 and  64
-       representing  the  arithmetic base, and n is a number in that base.  If
-       base# is omitted, then base 10 is used.  When specifying n, the  digits
-       greater< than 9 are represented by the lowercase letters, the uppercase
-       letters, @, and _, in that order.  If base is less than or equal to 36,
-       lowercase  and  uppercase letters may be used interchangeably to repre‐
-       sent numbers between 10 and 35.
-
-       Operators are evaluated in order  of  precedence.   Sub-expressions  in
-       parentheses  are  evaluated first and may override the precedence rules
-       above.
 
 ## [CONDITIONAL EXPRESSIONS](http://lirobo.blogspot.tw/2013/11/blog-post_26.html)
        Conditional expressions are used by the [[  compound  command  及內建指令
@@ -988,7 +630,7 @@ exit status 是系統呼叫 waitpid 或 equivalent 回傳的值，落在 0 ~ 255
 
 ## HISTORY EXPANSION
 bash 支援類似 csh 的歷史擴展。This section describes what syntax  features
-are  available. 互動式 shell 預設開啟歷史擴展，可以透過內建指令 [set](builtin-set.md) 的選項 +H 關閉。非互動式 shell 預設不使用歷史擴展。
+are  available. 互動式 shell 預設開啟歷史擴展，可以透過內建指令 set 的選項 +H 關閉。非互動式 shell 預設不使用歷史擴展。
 
        History expansions introduce words from the history list into the input
        stream,  making  it  easy to repeat commands, insert the arguments to a
@@ -1146,8 +788,6 @@ The shell allows control of the various characters used by the  history
 
 bash 跟傳統 sh 間有些微的差別，大多是因為 POSIX 規範。
 
-       Aliases are confusing in some uses.
-
        Shell builtin commands and functions are not stoppable/restartable.
 
        Compound commands and command sequences of the form `a ; b ; c' are not
@@ -1162,11 +802,6 @@ bash 跟傳統 sh 間有些微的差別，大多是因為 POSIX 規範。
        There may be only one active coprocess at a time.
 
 ## 參考及延伸閱讀
-1. 原始來源：man bash (GNU Bash 4.3 General Commands Manual 2014 February 2)
-1. http://lirobo.blogspot.tw/2013/11/shell-script.html
-1. tcsh 跟 bash 的不同：https://web.fe.up.pt/~jmcruz/etc/unix/sh-vs-csh.html
-1. http://linuxfinances.info/info/unixshells.html
-1. [Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html)
 1. The Gnu Readline Library
 1. The Gnu History Library
 1. Portable Operating System Interface (POSIX) Part 2:  Shell  and  Utilities, IEEE -- http://pubs.opengroup.org/onlinepubs/9699919799/。POSIX 是一種基於 Unix 開放系統標準家族

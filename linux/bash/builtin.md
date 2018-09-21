@@ -1,77 +1,3 @@
-## alias
-```
-alias [-p] [name[=value] ...]
-```
-沒有引數或用選項 -p 列出 aliases (格式 alias name=value)
-
-When
-              arguments  are supplied, an alias is defined for each name whose
-              value is given.  A trailing space in  value causes the next word
-              to be checked for alias substitution when the alias is expanded.
-
-For each name in the argument list for which no  value  is  sup‐
-              plied,  the  name  and  value  of  the  alias is printed.
-
-## bind
-```
-bind [-m keymap] [-lpsvPSVX]
-bind [-m keymap] [-q function] [-u function] [-r keyseq]
-bind [-m keymap] -f filename
-bind [-m keymap] -x keyseq:shell-command
-bind [-m keymap] keyseq:function-name
-bind readline-command
-```
-顯示目前 [readline](bash-readline.md) key 及 function 的綁定、綁定 key sequence 到 readline function 或 macro、或設定 readline 變數。
-
-每個非選項的引數是如同 .inputrc 的指令，但 binding 跟 command 需要用不同引數傳遞。例如「"\C-x\C-r":  re-read-init-file」.
-
-選項：
-* -m keymap
-	* keymap 可為 emacs (emacs-standard)、emacs-meta、emacs-ctlx、vi (vi-command)、vi-move、及 vi-insert，影響後續的綁定。
-* -l
-	* 列出所有 readline 功能名稱
-* -p
-	* 顯示 readline 功能名稱及綁定 (可輸入格式)
-* -P
-	* 列出目前 readline 功能名稱及綁定
-* -s
-	* 顯示 readline key sequences bound to macros and the strings they output (可輸入格式)
-* -S
-	* 顯示 readline key sequences bound to macros and the strings they output.
-* -v
-	* 顯示 readline variable names and values (可輸入格式)
-* -V
-	* 列出目前 readline 變數名稱及值
-* -f filename
-	* 自 filename 讀取 key bindings
-* -q function
-	* 詢問 function 綁定的 key
-* -u function
-	* 取消 function 綁定的 key
-* -r keyseq
-	* 移除任何目前 keyseq 的綁定
-* -x keyseq:shell-command
-	* 輸入 keyseq 執行 shell-command。shell-command 執行時, shell 設定變數 READLINE_LINE 為 readline line buffer 內容及 READLINE_POINT 為目前游標位置。如果執行的指令改變 READLINE_LINE 或 READLINE_POINT 的值，將會反應在編輯狀態。
-* -X
-	* 列出所有 key sequences bound to shell commands and the associated commands (可輸入格式)
-
-## break
-```
-break [n]
-```
-跳脫 n 層 for、while、until、或 select 迴圈，n 預設為 1。回傳值是 0，除非 n < 1。
-
-## builtin
-```
-builtin shell-builtin [arguments]
-```
-用內建指令執行。
-當定義的 function 名稱跟內建指令相同時，用來強制使用內建指令。
-
-內建指令 cd 常常用 function 重新定義。
-
-如果 shell-builtin 不是一個內建指令，回傳值是 false。
-
 ## complete
 ```
 complete [-abcdefgjksuv] [-o comp-option] [-DE] [-A action]  [-G  glob‐pat] [-W wordlist] [-F function] [-C command] [-X filterpat] [-P prefix] [-S suffix] name [name ...]
@@ -214,29 +140,6 @@ complete -pr [-DE] [name ...]
 
 [Bash ssh 由歷史資料來自動補齊主機名稱](https://blog.longwin.com.tw/2012/02/bash-autocomplete-ssh-2012/)
 
-## continue [n]
-直接開始下一回 for、while、until、或 select 封閉的控制迴圈。如果有 n，開始第 n 層封閉迴圈。如果 n 超出所有封閉迴圈層數，則使用最外層。回傳值 0，除非 n < 1。
-
-## enable [-a] [-dnps] [-f filename] [name ...]
-啟用及停用內建指令。
-停用某個內建指令可以不用指令完整路徑執行同名的外部指令
-
-範例：
-* `enable -n test` 停用內建指令 test
-* `enable test` 啟用內建指令 test
-* `enable` 或 `enable -p` 列出啟用的內建指令
-* `enable -n` 列出停用的內建指令
-* `enable -a` 列出所有內建指令，無論啟用及停用的
-* `enable -s` 列出啟用的 POSIX 內建指令
-* `enable -f filename` 載入來自 shared object filename 的內建指令
-* `enable -d` 移除之前透過 -f 載入的內建指令
-
-## let arg [arg ...]
-              每個 arg 是要 evaluated 的 arithmetic expression (見 ARITHMETIC EVALUATION)。如果最後 arg evaluates 為 0，回傳 1，否則回傳 1。
-
-## logout
-Exit a login shell.
-
 ## read [-ers] [-a aname] [-d delim] [-i text] [-n nchars] [-N nchars] [-p prompt] [-t timeout] [-u fd] [name ...]
               從標準輸入或 fd 讀入一行，
               first word 指定給 first name, the second word 給
@@ -308,16 +211,7 @@ Exit a login shell.
               tor is supplied as the argument to -u.
 
 
-## [set](builtin-set.md)
-
-## shift [n]
-所有位置參數往前位移 n 個位置，沒給 n 值時當作 1。n 超出範圍不動作，回傳大於 0 的值；正常回傳 0。
-
 ## [shopt](builtin-shopt.md)
-
-## times
-印出累積的 user 及 system times for  the  shell  and
-              for processes run from the shell.
 
 ## type
 內建指令

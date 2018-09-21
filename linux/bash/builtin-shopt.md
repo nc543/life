@@ -2,7 +2,7 @@
 shopt [-pqsu] [-o] [optname ...]
 
 Toggle the values of settings controlling optional shell  behavior.   The settings can be either those listed below, or, if the
-              -o option is used, those available to 內建指令 [set](builtin-set.md) 的 -o option
+              -o option is used, those available to 內建指令 set 的 -o option
               .  With no options, or with the -p option, a list
               of all settable options is  displayed,  with  an  indication  of
               whether  or  not each is set.  The -p option causes output to be

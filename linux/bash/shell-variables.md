@@ -18,12 +18,6 @@ Expands to the full filename used to  invoke  this  instance  of
               differs from $$ under certain circumstances, such  as  subshells
               that do not require bash to be re-initialized.
 
-## BASH_ALIASES
-              An  associative  array  variable whose members correspond to the
-              internal list of aliases as maintained  by  the  alias  builtin.
-              Elements added to this array appear in the alias list; unsetting
-              array elements cause aliases to be removed from the alias list.
-
 ## BASH_ARGC
               An array variable whose values are the number of  parameters  in
               each frame of the current bash execution call stack.  The number

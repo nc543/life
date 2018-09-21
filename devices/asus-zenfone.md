@@ -1,7 +1,7 @@
 * 手機螢幕擷取
 * ZenUI如何停用CM APPLock
 
-zenfone 5 ZE620KL 4G/64G
+zenfone 5 ZE620KL 4G/64G 2018/06 星芒銀 + 側掀皮套 + 犀牛盾保護貼 = 13188
 * 165g
 * 插槽 1: 2G/3G/4G Nano SIM 卡
 * 插槽 2: 2G/3G/4G Nano SIM 卡和 microSD 卡擇一，microSD 卡最高 2TB

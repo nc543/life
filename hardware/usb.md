@@ -1,73 +1,14 @@
 # USB
 
-USB 接頭
-* Type
-	* Type-A：長方形接口，目前市面上大多隨身碟使用
-	* Type-B：大多手機連接埠使用
-	* Type-C：對稱的扁形接口，最高 100 瓦的供電輸出以及支援 HDMI、VGA、DisplayPort 影片輸出。
-* Standard A 插頭與插座 (有 USB 3.1 版本向前支援)、Standard B 插頭與插座、USB 3.1 Standard B 插座可插 USB 3.1 或之前的 Std-B 插頭
-* Mini-A 插頭與插座、Mini-B 插頭與插座、Mini-AB 插座
-* Micro-A 插頭、Micro-B 插頭與插座、Micro-AB 插座 (USB OTG)、USB 3.1 Micro-B 插座可插 USB 3.1 或之前的 Micro-B 插頭
-* Lightning
-* MHL (Mobile High-Definition Link)
+插入 mini-A 插頭的設備必須提供電源至少 8mA ，但資料停止傳送後可以關掉以達到省電的目的；另一端 OTG 設備 (除了用mini-AB插座外，也可能採用 mini-B 插座或 mini-A 插頭) ，最多消耗 8mA，並且能夠使用 Session Request Protocol 叫醒主機送電。
 
-用 USB 充電
-
-充電標準
-* Battery Charging (BC) 1.2 Standard
-	* 標準下行埠 (Standard Downstream Port, SDP) 最多 500 mA
-	* 充電下行埠 (Charging Downstream Port, CDP)，在 low-/full-speed 時可達 1.5 A，但在 Hi-speed 大約只能 900 mA
-	* 專用充電埠 (Dedicated Charging Port, DCP)，可加大充電電流例如到 2.0 A，不需要完整的 USB Controller
-* Charging Protocols：透過溝通決定充電電流，USB Battery Charging 1.0 specification > 1.1 > 1.2, China's YDT-1591 spec.
-* Apple
-	* D+ = D- = 2.0V：0.5A (電腦)
-	* D+ = 2.0V, D- = 2.7V：1.0A (iPhone 充電器)
-	* D+ = 2.7V, D- = 2.0V：1.5A (iPad 充電器)
-	* D+ = D- = 2.7V：2.4A (2.4 充電器)
-* 三星
-* 中國 YD/T1591 - 2009
-* 過電流保護
-
-訊號|USB|micro/mini-USB|Lightning|說明
-----|---|--------------|---------|----
-VBUS| 1 | 1            | 4       |Red 5V±5% 電源
-D-  | 2 | 2            | 6       |White
-D+  | 3 | 3            | 7       |Green
-ID  | - | 4            |         |OTG 作為 Host 時接地，slave 時空接。
-GND | 4 | 5            | 8       |Black
-
-5V 電源
-
-一個單位 100mA，最多 500mA
-
-有兩種充電模式，一般俗稱為「USB 模式」和「AC 模式」。USB 模式屬於標準充電模式，裝置會將輸入電流限制在 500mA 以下。AC 模式輸入電流可達500mA以上。
-
-其它大多就 USB 所規範定義的 D+、D- 腳位短路，裝置就會判定得以 AC 模式進行快速充電
-
-D+、D-：使用 NRZI 的 differential data signals。連續六個 1 時，bit stuffing 一個 0 來避免太久沒準位變動。電壓準位low: 0.0~0.3V, high: 2.8~3.6V
-
-USB 周邊 pullup D+ 表示 full-speed、pullup D- 表示 low-speed。
-
-一個USB插座最多提供500mA，也就是約2.5W。如果併兩個USB插座則可達5W。連接的設備一開始使用 low-power mode (最多100 mA)，然後要求它所需的電流大小再切到 high-power mode。Host controller可以關掉一些設備來避免過載。
-
-OTG 線兩端分別是 mini-A 插頭跟 mini-B 插頭。插入 mini-A 插頭端的設備預設為主機角色，另一端則預設為周邊角色，但可經由 Host Negotiation Protocol 協調交換彼此的角色。OTG 的主機功能是有限制的，因為手持裝置不像電腦那麼容易加入各種周邊的驅動程式，只能各自列表說明它支援哪些週邊。
-
-插 入 mini-A 插頭的設備必須提供電源至少 8mA ，但資料停止傳送後可以關掉以達到省電的目的；另一端 OTG 設備 (除了用mini-AB插座外，也可能採用 mini-B 插座或 mini-A 插頭) ，最多消耗 8mA，並且能夠使用 Session Request Protocol 叫醒主機送電。
-
-mini-AB 插座，可以接受 mini-A 或 mini-B 插頭，並且多一個 ID pin。 mini-A 插頭的ID是接地，而 mini-B的是空接。插入 mini-A 接頭的設備必須提供至少8mA電流，資料停止傳送後可以關掉電源省電。並預設為主機角色， 。Adapters allow connection to standard USB sockets.
+mini-AB 插座插入 mini-A 接頭的設備必須提供至少8mA電流，資料停止傳送後可以關掉電源省電。並預設為主機角色， 。Adapters allow connection to standard USB sockets.
 
 [USB On-The-Go Basics](https://www.maximintegrated.com/en/app-notes/index.mvp/id/1822)
 [Tutorial: USB On-The-Go (OTG)](http://www.nxp.com/acrobat/literature/9397/75009316.pdf)
 
 延伸閱讀
     http://www.chipworks.com/en/technical-competitive-analysis/resources/blog/systems-analysis-of-the-apple-lightning-to-usb-cable/：有 IC NXP SP3D2、STMicroelectronics USB2A、TI BQ2025、及 Unknown manufacturer with markings identified as 4S (functionality is known)
-
-速度一開始時 D+ 跟 D- 亦用來決定 slave 速度，D+ pull high 表示是 high speed 或 full speed，D- pull high 表示是 low speed。
-
-
-USB UART bridge
-* FTDI FT232R
-* CP21xx USB bridge from Silicon Laboratories : UART or I²C，不需要外部 crystal oscillator.
 
 USB scope
 * [The cheapest dual trace scope in the galaxy](http://yveslebrac.blogspot.tw/2008/10/cheapest-dual-trace-scope-in-galaxy.html)
@@ -81,23 +22,6 @@ USB Classes
 USB 是樹狀架構，透過 USB hubs 分支出去，所有 USB 連接線都是點對點的，一端是往上游主機，另一端往下游週邊。
 
 一般的週邊使用 USB 5V 的電小於 100 mA，經過週邊要求，最多可用到 500 mA。
-
-USB 的資料訊號 D+ 及 D- 是阻抗 90Ω ±15% 的雙絞線，約 3、4 伏特左右。在主機端，兩者有 15 kΩ pull-down，在沒驅動的時候，訊號停在所謂的 single-ended zero (SE0) 狀態，表示 reset 或 disconnected。10~20 ms SE0 表示 reset。當 D+ 及 D- 一個為 high，一個為 low 為 J 或 K 狀態。
-
-USB 速率有三種 (名稱|速率|認定方式|說明)
-* Low Speed (LS): 1.5 Mbit/s ±15000 ppm。週邊端 1.5 kΩ 拉高 D- 表示 LS。
-* Full Speed (FS): 12 Mbit/s ±2500 ppm。週邊端 1.5 kΩ 拉高 D+ 表示 FS。所有 USB hubs 都支援 FS。
-* High Speed (HS): 480 Mbit/s ±500 ppm。週邊端 90 Ω terminate D+ 及 D-，需經過 chirping 步驟來 negotiate。USB 2.0 才有，往前相容，如果需要的話可回到 FS 運作。
-
-chirping 步驟：週邊端先當作自己是 FS，拉高 D+，然後當收到 USB RESET 後改拉高 D− (K) 告訴主機端要用 HS。如果主機端支援 HS，會回 JK 告訴週邊端。週邊端至少要收到 3 sets of KJ chirps 才能切換到 HS。
-
-USB 採用 NRZI 編碼，toggle (J 及 K 切換) 表示 0，不變 (維持 J 或 K) 表示 1，六個連續 1 要作 bit-stuffing，多加一個 0。
-
-A USB device pulls one of the data lines high with a 1.5 kΩ resistor. This overpowers one of the pull-down resistors in the host and leaves the data lines in an idle state called "J".
-
-A USB packet begins with an 8-bit synchronization sequence '00000001'. That is, after the initial idle state J, the data lines toggle KJKJKJKK. The final 1 bit (repeated K state) marks the end of the sync pattern and the beginning of the USB frame. For high bandwidth USB, the packet begins with a 32-bit synchronization sequence.
-
-A USB packet's end, called EOP (end-of-packet), is indicated by the transmitter driving 2 bit times of SE0 (D+ and D− both below max) and 1 bit time of J state. After this, the transmitter ceases to drive the D+/D− lines and the aforementioned pull up resistors hold it in the J (idle) state. Sometimes skew due to hubs can add as much as one bit time before the SE0 of the end of packet. This extra bit can also result in a "bit stuff violation" if the six bits before it in the CRC are '1's. This bit should be ignored by receiver.
 
 ===============
 ```
