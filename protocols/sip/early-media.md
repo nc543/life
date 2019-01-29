@@ -1,6 +1,6 @@
 [RFC3960: Early Media and Ringing Tone Generation in the Session Initiation Protocol (SIP)](https://tools.ietf.org/html/rfc3960)
 
-early media：指受話端接受 session 前使用的 media，期間從受話端收到初始 INVITE 到其送出的最後回應，可以是任一單向或雙向的 media。
+early media：受話端收到初始 INVITE 後，在送出的最後回應前使用的 media，media 可以是任一單向或雙向。
 
 可能用途
 * 受話端產生的 ringing tone and announcements (e.g., queuing status)
@@ -15,7 +15,7 @@ application server 模式使用 the early-session disposition type, which is spe
 ## Session Establishment in SIP
 沒有 early media 情況下的 offer/answer model
 
-SIP 使用 two-way handshake 的 offer/answer 模式來協調 session 參數。
+SIP 使用 two-way 交握的 offer/answer 模式來協調 session 參數。
 發話端或受話端有一端先準備一個 session 描述，稱為 offer。
 另一端回應另一個 session 描述稱為 answer。(如果不同意，則...)
 
@@ -25,7 +25,7 @@ offer 在 INVITE 請求，answer 在回覆的 200 OK：
 * media 封包可能直送而比 200 OK 早到發話端，發話端如果因收到的 media 訊息內容而馬上講話，此時不曉得要送到哪裡，而有可能出現 media clipping。
 有些情況發話端需要收到 200 OK 才能處理接收的語音封包，例如需要 QoS, media authorization, or media encryption，使用 preconditions 來避免 media clipping。
 
-offer 在空白 INVITE 的 200 OK 回覆，answer 在 ACK：會有 media clipping，受話端送 200 OK 時使用者就可能開始「喂」，但此時還不知道 media 封包要送到哪裡，直到收到 ACK。
+offer 在 200 OK 回覆，answer 在 ACK：會有 media clipping，受話端送 200 OK 時使用者就可能開始「喂」，但此時還不知道 media 封包要送到哪裡，直到收到 ACK。
 
 當使用 [reliable provisional responses](https://tools.ietf.org/html/rfc3262) 和 [UPDATE](https://tools.ietf.org/html/rfc3311) 請求，會有很多可能的方式來交換 offers 和 answers.
 
@@ -197,7 +197,7 @@ These issues are
    media takes place.  From the PSTN perspective, the circuit is a
    continuous source of media.
 
-## 4.  The Application Server Model
+## 4. Application Server Model
 解決 gateway 模式的一些 issues
 
 受話端作為 application server 跟發話端建立 early media。
